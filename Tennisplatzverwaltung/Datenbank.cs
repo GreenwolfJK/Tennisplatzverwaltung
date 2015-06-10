@@ -24,9 +24,9 @@ namespace Tennisplatzverwaltung_Brockwitz
 
         private void btnDBConnect_Click(object sender, EventArgs e)
         {
-            // ... Code einfügen ...
-            // Verbindung zur Datenbank herstellen!!!
-            // ... Code einfügen ...
+            DBConnect db = new DBConnect();
+            bool dbopen = db.openDatabase();
+            MessageBox.Show(dbopen.ToString());
 
             lblTabelle.Visible = true;
             cbTables.Visible = true;
