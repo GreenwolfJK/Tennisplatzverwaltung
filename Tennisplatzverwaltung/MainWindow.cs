@@ -20,12 +20,16 @@ namespace Tennisplatzverwaltung_Brockwitz
         
         private void btnBuchung_Click(object sender, EventArgs e)
         {
-            
-            
                 (sender as Button).Enabled = false;
-                (sender as Button).Visible = false;
+                //(sender as Button).Visible = false;
                 new Buchung().Show();
-                      
         }
+
+        private void btnDatenbank_Click(object sender, EventArgs e)
+        {
+            (sender as Button).Enabled = false;
+            new Datenbank().Show();
+        }
+
     }
 }

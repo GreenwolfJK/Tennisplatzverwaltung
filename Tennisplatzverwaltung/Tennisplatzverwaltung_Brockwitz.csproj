@@ -50,6 +50,12 @@
     <Compile Include="Buchung.Designer.cs">
       <DependentUpon>Buchung.cs</DependentUpon>
     </Compile>
+    <Compile Include="Datenbank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Datenbank.Designer.cs">
+      <DependentUpon>Datenbank.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Buchung.resx">
       <DependentUpon>Buchung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Datenbank.resx">
+      <DependentUpon>Datenbank.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

@@ -31,7 +31,7 @@
             this.lblWillkommen = new System.Windows.Forms.Label();
             this.lblVorhaben = new System.Windows.Forms.Label();
             this.btnBuchung = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDatenbank = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblWillkommen
@@ -65,23 +65,24 @@
             this.btnBuchung.UseVisualStyleBackColor = true;
             this.btnBuchung.Click += new System.EventHandler(this.btnBuchung_Click);
             // 
-            // button2
+            // btnDatenbank
             // 
-            this.button2.AutoSize = true;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(283, 117);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 28);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Datenbank";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDatenbank.AutoSize = true;
+            this.btnDatenbank.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDatenbank.Location = new System.Drawing.Point(283, 117);
+            this.btnDatenbank.Name = "btnDatenbank";
+            this.btnDatenbank.Size = new System.Drawing.Size(89, 28);
+            this.btnDatenbank.TabIndex = 3;
+            this.btnDatenbank.Text = "Datenbank";
+            this.btnDatenbank.UseVisualStyleBackColor = true;
+            this.btnDatenbank.Click += new System.EventHandler(this.btnDatenbank_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 162);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnDatenbank);
             this.Controls.Add(this.btnBuchung);
             this.Controls.Add(this.lblVorhaben);
             this.Controls.Add(this.lblWillkommen);
@@ -97,7 +98,7 @@
         private System.Windows.Forms.Label lblWillkommen;
         private System.Windows.Forms.Label lblVorhaben;
         private System.Windows.Forms.Button btnBuchung;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDatenbank;
 
 
     }
