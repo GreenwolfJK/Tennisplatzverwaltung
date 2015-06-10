@@ -21,5 +21,15 @@ namespace Tennisplatzverwaltung_Brockwitz
         {
             this.Close();
         }
+
+        private void btnDBConnect_Click(object sender, EventArgs e)
+        {
+            // ... Code einfügen ...
+            // Verbindung zur Datenbank herstellen!!!
+            // ... Code einfügen ...
+
+            lblTabelle.Visible = true;
+            cbTables.Visible = true;
+        }
     }
 }
