@@ -190,7 +190,7 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(33, 79);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(355, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(338, 22);
             this.dateTimePicker1.TabIndex = 12;
             // 
             // lblStartPlaceholder
