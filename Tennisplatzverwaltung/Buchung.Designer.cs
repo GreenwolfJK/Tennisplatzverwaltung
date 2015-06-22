@@ -1,4 +1,4 @@
-﻿namespace Tennisplatzverwaltung_Brockwitz
+﻿namespace Tennisplatzverwaltung
 {
     partial class Buchung
     {
@@ -181,6 +181,8 @@
             this.Controls.Add(this.lblVon);
             this.Controls.Add(this.lblPlatzWahl);
             this.Controls.Add(this.comboBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Buchung";
             this.Text = "Buchung";
             this.ResumeLayout(false);

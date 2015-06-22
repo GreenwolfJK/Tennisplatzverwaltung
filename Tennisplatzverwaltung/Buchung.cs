@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tennisplatzverwaltung_Brockwitz
+namespace Tennisplatzverwaltung
 {
     public partial class Buchung : Form
     {
@@ -26,13 +26,9 @@ namespace Tennisplatzverwaltung_Brockwitz
 
         private void btnBuchen_Click(object sender, EventArgs e)
         {
-           
             // ... Code einfügen ...
             // Daten aus Textboxen mit gewählten Platz in Datenbank schreiben
             // ... Code einfügen ...
-            
-            this.Close();
-            
         }
 
         
