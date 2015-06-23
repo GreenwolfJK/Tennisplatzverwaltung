@@ -54,9 +54,6 @@ namespace Tennisplatzverwaltung
         private void btnSave_Click(object sender, EventArgs e)
         {
             db.writeIntoDatabase(tblDBData, cbTables.SelectedItem.ToString());
-            //{
-            //    MessageBox.Show("Synchronisieren erfolgreich!");
-            //}
         }
 
         private void btnShowPersDat_Click(object sender, EventArgs e)
@@ -90,6 +87,18 @@ namespace Tennisplatzverwaltung
                     oldSelection = cbTables.SelectedIndex;
                     btnShowPersDat.Enabled = true;
                 }
+
+                if (cbTables.SelectedItem.ToString().Equals("adressdaten"))
+                {
+                    btn_details.Enabled = true;
+                    btn_details.Visible = true;
+                }
+                else
+                {
+                    btn_details.Enabled = false;
+                    btn_details.Visible = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -108,6 +117,22 @@ namespace Tennisplatzverwaltung
             dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
             dbData.TopMost = true;
             dbData.TopMost = false;
+        }
+
+        private void btn_details_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridViewSelectedCellCollection cells = dbData.Datgrid.SelectedCells;
+                String id = cells[cells.Count - 1].OwningRow.Cells[0].Value.ToString().Trim();
+                AdressdatenMenue admenue = new AdressdatenMenue(db, id);
+                admenue.ShowDialog();
+            }
+            catch (Exception exc)
+            {
+                AdressdatenMenue admenue = new AdressdatenMenue(db);
+                admenue.ShowDialog();
+            }
         }
     }
 }
