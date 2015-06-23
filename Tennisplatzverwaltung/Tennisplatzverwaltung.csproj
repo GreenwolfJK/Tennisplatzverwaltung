@@ -86,6 +86,25 @@
     <Compile Include="DBData.Designer.cs">
       <DependentUpon>DBData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\AdressdatenEinzel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\AdressdatenEinzel.Designer.cs">
+      <DependentUpon>AdressdatenEinzel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\AdressdatenMenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\AdressdatenMenue.Designer.cs">
+      <DependentUpon>AdressdatenMenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\AdressdatenNeu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\AdressdatenNeu.Designer.cs">
+      <DependentUpon>AdressdatenNeu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Objekt\Adressdatensatz.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Buchung.resx">
@@ -96,6 +115,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBData.resx">
       <DependentUpon>DBData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\AdressdatenEinzel.resx">
+      <DependentUpon>AdressdatenEinzel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\AdressdatenMenue.resx">
+      <DependentUpon>AdressdatenMenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\AdressdatenNeu.resx">
+      <DependentUpon>AdressdatenNeu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

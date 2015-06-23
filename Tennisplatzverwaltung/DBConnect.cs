@@ -9,9 +9,14 @@ using System.Windows.Forms;
 
 namespace Tennisplatzverwaltung
 {
-    class DBConnect
+    public class DBConnect
     {
         MySqlConnection connection = null;
+        MySqlCommand statement = null;
+        //private String myConnectionString = "SERVER=localhost;" +
+        //                                    "DATABASE=tennis;" +
+        //                                    "UID=tennis;" +
+        //                                    "PASSWORD=tennis;";
         private String myConnectionString = "SERVER=h2440804.stratoserver.net;" +
                                             "DATABASE=Tennisplatzverwaltung;" +
                                             "UID=tennisjogis;" +
@@ -32,6 +37,44 @@ namespace Tennisplatzverwaltung
             catch (Exception e1)
             {
                 Console.WriteLine(e1.Message);
+                return false;
+            }
+        }
+
+        public MySqlDataReader executeQuery(string sql)
+        {
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = sql;
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+            return reader;
+        }
+
+        public void prepareStatement(String sql)
+        {
+            this.statement = new MySqlCommand(sql, connection);
+        }
+
+        public void addParamToStatement(String pos, Object param)
+        {
+            statement.Parameters.AddWithValue(pos, param);
+        }
+
+        public void executeStatement()
+        {
+            statement.ExecuteNonQuery();
+        }
+
+        public bool closeDatabase()
+        {
+            try
+            {
+                connection.Close();
+                return true;
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show("Error has occured!" + e2.Message);
                 return false;
             }
         }
@@ -81,27 +124,5 @@ namespace Tennisplatzverwaltung
             return success;
         }
 
-        public MySqlDataReader executeQuery(string sql)
-        {
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = sql;
-            MySqlDataReader reader;
-            reader = command.ExecuteReader();
-            return reader;
-        }
-
-        public bool closeDatabase()
-        {
-            try
-            {
-                connection.Close();
-                return true;
-            }
-            catch (Exception e2)
-            {
-                Console.WriteLine(e2.Message);
-                return false;
-            }
-        }
     }
 }
