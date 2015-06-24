@@ -100,7 +100,7 @@ namespace Tennisplatzverwaltung
 
         private void btnBuchung_Click(object sender, EventArgs e)
         {
-            new Buchung().ShowDialog();
+            new Buchung(db).ShowDialog();
         }
 
         private void Datenbank_LocationChanged(object sender, EventArgs e)

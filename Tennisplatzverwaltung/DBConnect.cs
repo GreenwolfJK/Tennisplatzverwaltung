@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Tennisplatzverwaltung
 {
-    class DBConnect
+    public class DBConnect
     {
         MySqlConnection connection = null;
         private String myConnectionString = "SERVER=h2440804.stratoserver.net;" +
@@ -102,6 +102,34 @@ namespace Tennisplatzverwaltung
                 Console.WriteLine(e2.Message);
                 return false;
             }
+        }
+
+        public int getPersonId (string vorname, string nachname)
+        {
+            int personID = 0;
+            using (MySqlCommand cmd = new MySqlCommand("SELECT person_id FROM personendaten WHERE vorname = @vorname AND nachname = @nachname", connection))
+            {
+                cmd.Parameters.AddWithValue("vorname", vorname);
+                cmd.Parameters.AddWithValue("nachname", nachname);
+                try 
+	            {	   
+     
+		            MySqlDataReader reader = cmd.ExecuteReader();
+                       
+                    while(reader.Read())
+                    {
+                        personID = reader.GetInt32(0);
+                    }
+                reader.Close();
+	            }
+	            catch (Exception ex)
+	            {
+		            MessageBox.Show("Error has occured!" + ex.Message);
+	            }
+            
+            }
+            return personID;
+       
         }
     }
 }

@@ -46,6 +46,8 @@
             this.tbEndzeitMin = new System.Windows.Forms.TextBox();
             this.lblEndPlaceholder = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
+            this.tbPersonId = new System.Windows.Forms.TextBox();
+            this.lblPersonId = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -123,7 +125,7 @@
             // 
             this.lblVorname.AutoSize = true;
             this.lblVorname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVorname.Location = new System.Drawing.Point(29, 180);
+            this.lblVorname.Location = new System.Drawing.Point(29, 194);
             this.lblVorname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVorname.Name = "lblVorname";
             this.lblVorname.Size = new System.Drawing.Size(93, 24);
@@ -134,7 +136,7 @@
             // 
             this.lblNachname.AutoSize = true;
             this.lblNachname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNachname.Location = new System.Drawing.Point(29, 214);
+            this.lblNachname.Location = new System.Drawing.Point(29, 234);
             this.lblNachname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNachname.Name = "lblNachname";
             this.lblNachname.Size = new System.Drawing.Size(108, 24);
@@ -144,22 +146,24 @@
             // tbVorname
             // 
             this.tbVorname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbVorname.Location = new System.Drawing.Point(123, 180);
+            this.tbVorname.Location = new System.Drawing.Point(137, 194);
             this.tbVorname.Margin = new System.Windows.Forms.Padding(4);
             this.tbVorname.Multiline = true;
             this.tbVorname.Name = "tbVorname";
             this.tbVorname.Size = new System.Drawing.Size(132, 24);
             this.tbVorname.TabIndex = 8;
+            this.tbVorname.TextChanged += new System.EventHandler(this.tbNames_TextChanged);
             // 
             // tbNachname
             // 
             this.tbNachname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNachname.Location = new System.Drawing.Point(137, 214);
+            this.tbNachname.Location = new System.Drawing.Point(137, 234);
             this.tbNachname.Margin = new System.Windows.Forms.Padding(4);
             this.tbNachname.Multiline = true;
             this.tbNachname.Name = "tbNachname";
             this.tbNachname.Size = new System.Drawing.Size(132, 24);
             this.tbNachname.TabIndex = 9;
+            this.tbNachname.TextChanged += new System.EventHandler(this.tbNames_TextChanged);
             // 
             // btnPrüfen
             // 
@@ -246,11 +250,35 @@
             this.btnReset.Text = "Bearbeiten";
             this.btnReset.UseVisualStyleBackColor = true;
             // 
+            // tbPersonId
+            // 
+            this.tbPersonId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPersonId.Location = new System.Drawing.Point(137, 154);
+            this.tbPersonId.Margin = new System.Windows.Forms.Padding(4);
+            this.tbPersonId.Multiline = true;
+            this.tbPersonId.Name = "tbPersonId";
+            this.tbPersonId.Size = new System.Drawing.Size(132, 24);
+            this.tbPersonId.TabIndex = 19;
+            this.tbPersonId.TextChanged += new System.EventHandler(this.tbPersonId_TextChanged);
+            // 
+            // lblPersonId
+            // 
+            this.lblPersonId.AutoSize = true;
+            this.lblPersonId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPersonId.Location = new System.Drawing.Point(29, 154);
+            this.lblPersonId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPersonId.Name = "lblPersonId";
+            this.lblPersonId.Size = new System.Drawing.Size(96, 24);
+            this.lblPersonId.TabIndex = 20;
+            this.lblPersonId.Text = "Person-Id:";
+            // 
             // Buchung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 322);
+            this.Controls.Add(this.lblPersonId);
+            this.Controls.Add(this.tbPersonId);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblEndPlaceholder);
             this.Controls.Add(this.tbEndzeitMin);
@@ -299,5 +327,7 @@
         private System.Windows.Forms.TextBox tbEndzeitMin;
         private System.Windows.Forms.Label lblEndPlaceholder;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.TextBox tbPersonId;
+        private System.Windows.Forms.Label lblPersonId;
     }
 }
