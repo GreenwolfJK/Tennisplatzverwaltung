@@ -12,9 +12,13 @@ namespace Tennisplatzverwaltung
 {
     public partial class Buchung : Form
     {
-        public Buchung()
+        DBConnect dbBuchen = new DBConnect();
+
+        public Buchung(DBConnect db)
         {
+            dbBuchen = db;
             InitializeComponent();
+            
         }
 
         private void btnPrüfen_Click(object sender, EventArgs e)
@@ -26,11 +30,38 @@ namespace Tennisplatzverwaltung
 
         private void btnBuchen_Click(object sender, EventArgs e)
         {
-            // ... Code einfügen ...
-            // Daten aus Textboxen mit gewählten Platz in Datenbank schreiben
-            // ... Code einfügen ...
+            int personId = dbBuchen.getPersonId(tbVorname.Text, tbNachname.Text);
+            MessageBox.Show(personId.ToString());
+            if (personId == 0)
+            {
+                MessageBox.Show("Kein Kunde gefunden");
+            }
         }
 
-        
+        private void tbPersonId_TextChanged(object sender, EventArgs e)
+        {
+            if(tbPersonId.Text != "")
+            {
+                tbVorname.Enabled = false;
+                tbNachname.Enabled = false;
+            }
+            else
+            {
+                tbVorname.Enabled = true;
+                tbNachname.Enabled = true;
+            }
+        }
+
+        private void tbNames_TextChanged(object sender, EventArgs e)
+        {
+            if (tbVorname.Text != "" || tbNachname.Text != "")
+            {
+                tbPersonId.Enabled = false;
+            }
+            else
+            {
+                tbPersonId.Enabled = true;
+            }
+        }
     }
 }

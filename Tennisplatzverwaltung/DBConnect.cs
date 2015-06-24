@@ -124,5 +124,32 @@ namespace Tennisplatzverwaltung
             return success;
         }
 
+        public int getPersonId (string vorname, string nachname)
+        {
+            int personID = 0;
+            using (MySqlCommand cmd = new MySqlCommand("SELECT person_id FROM personendaten WHERE vorname = @vorname AND nachname = @nachname", connection))
+            {
+                cmd.Parameters.AddWithValue("vorname", vorname);
+                cmd.Parameters.AddWithValue("nachname", nachname);
+                try 
+	            {	   
+     
+		            MySqlDataReader reader = cmd.ExecuteReader();
+                       
+                    while(reader.Read())
+                    {
+                        personID = reader.GetInt32(0);
+                    }
+                reader.Close();
+	            }
+	            catch (Exception ex)
+	            {
+		            MessageBox.Show("Error has occured!" + ex.Message);
+	            }
+            
+            }
+            return personID;
+       
+        }
     }
 }
