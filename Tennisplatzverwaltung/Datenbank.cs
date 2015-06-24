@@ -18,6 +18,7 @@ namespace Tennisplatzverwaltung
         private DBData dbData = new DBData();
         DataTable tblDBData = new DataTable();
         MySqlDataAdapter da = new MySqlDataAdapter();
+        AdressdatenMenue admenue = null;
 
         int oldSelection = -1;
 
@@ -77,6 +78,7 @@ namespace Tennisplatzverwaltung
         {
             try
             {
+
                 if (cbTables.SelectedIndex != -1)
                 {
                     tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString());
@@ -117,21 +119,45 @@ namespace Tennisplatzverwaltung
             dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
             dbData.TopMost = true;
             dbData.TopMost = false;
+
+            if (admenue != null)
+            {
+                admenue.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
+                admenue.TopMost = true;
+                admenue.TopMost = false;
+            }
         }
 
         private void btn_details_Click(object sender, EventArgs e)
         {
-            try
+            if (admenue != null)
             {
-                DataGridViewSelectedCellCollection cells = dbData.Datgrid.SelectedCells;
-                String id = cells[cells.Count - 1].OwningRow.Cells[0].Value.ToString().Trim();
-                AdressdatenMenue admenue = new AdressdatenMenue(db, id);
-                admenue.ShowDialog();
+                if (!admenue.Visible)
+                {
+                    admenue = null;
+                    btn_details_Click(this, null);
+                }
             }
-            catch (Exception exc)
+            else
             {
-                AdressdatenMenue admenue = new AdressdatenMenue(db);
-                admenue.ShowDialog();
+                try
+                {
+                    DataGridViewSelectedCellCollection cells = dbData.Datgrid.SelectedCells;
+                    String id = cells[cells.Count - 1].OwningRow.Cells[0].Value.ToString().Trim();
+                    admenue = new AdressdatenMenue(db, id);
+                    admenue.Show();
+
+                }
+                catch (Exception)
+                {
+                    admenue = new AdressdatenMenue(db);
+                    admenue.Show();
+                }
+                if (dbData.Visible == true)
+                {
+                    btnShowPersDat_Click(this, null);
+                }
+                Datenbank_LocationChanged(this, null);
             }
         }
     }
