@@ -36,6 +36,8 @@
             this.btnBuchung = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_details = new System.Windows.Forms.Button();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbConnected)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +73,7 @@
             // 
             this.btnShowPersDat.Enabled = false;
             this.btnShowPersDat.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btnShowPersDat.Location = new System.Drawing.Point(239, 137);
+            this.btnShowPersDat.Location = new System.Drawing.Point(239, 187);
             this.btnShowPersDat.Name = "btnShowPersDat";
             this.btnShowPersDat.Size = new System.Drawing.Size(26, 32);
             this.btnShowPersDat.TabIndex = 7;
@@ -104,7 +106,7 @@
             // 
             this.btnBuchung.AutoSize = true;
             this.btnBuchung.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuchung.Location = new System.Drawing.Point(12, 141);
+            this.btnBuchung.Location = new System.Drawing.Point(12, 191);
             this.btnBuchung.Name = "btnBuchung";
             this.btnBuchung.Size = new System.Drawing.Size(115, 28);
             this.btnBuchung.TabIndex = 10;
@@ -127,7 +129,7 @@
             this.btn_details.AutoSize = true;
             this.btn_details.Enabled = false;
             this.btn_details.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_details.Location = new System.Drawing.Point(13, 107);
+            this.btn_details.Location = new System.Drawing.Point(13, 157);
             this.btn_details.Name = "btn_details";
             this.btn_details.Size = new System.Drawing.Size(114, 28);
             this.btn_details.TabIndex = 12;
@@ -136,11 +138,32 @@
             this.btn_details.Visible = false;
             this.btn_details.Click += new System.EventHandler(this.btn_details_Click);
             // 
+            // lblFilter
+            // 
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(12, 111);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(32, 13);
+            this.lblFilter.TabIndex = 13;
+            this.lblFilter.Text = "Filter:";
+            this.lblFilter.Visible = false;
+            // 
+            // tbFilter
+            // 
+            this.tbFilter.Location = new System.Drawing.Point(13, 128);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(100, 20);
+            this.tbFilter.TabIndex = 14;
+            this.tbFilter.Visible = false;
+            this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
+            // 
             // Datenbank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 183);
+            this.ClientSize = new System.Drawing.Size(277, 228);
+            this.Controls.Add(this.tbFilter);
+            this.Controls.Add(this.lblFilter);
             this.Controls.Add(this.btn_details);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuchung);
@@ -170,5 +193,7 @@
         private System.Windows.Forms.Button btnBuchung;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_details;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.TextBox tbFilter;
     }
 }
