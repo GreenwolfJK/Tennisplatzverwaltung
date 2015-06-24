@@ -18,6 +18,7 @@ namespace Tennisplatzverwaltung
         private DBData dbData = new DBData();
         DataTable tblDBData = new DataTable();
         MySqlDataAdapter da = new MySqlDataAdapter();
+        AdressdatenMenue admenue = null;
 
         int oldSelection = -1;
 
@@ -77,6 +78,7 @@ namespace Tennisplatzverwaltung
         {
             try
             {
+
                 if (cbTables.SelectedIndex != -1)
                 {
                     tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString());
@@ -91,13 +93,27 @@ namespace Tennisplatzverwaltung
                 if (cbTables.SelectedItem.ToString().Equals("adressdaten"))
                 {
                     btn_details.Enabled = true;
-                    btn_details.Visible = true;
+                    btn_details.Visible = true; 
+                    tbFilter.Visible = false;
+                    lblFilter.Visible = false;
+
+                }
+                else if (cbTables.SelectedItem.ToString().Equals("personendaten"))
+                {
+                    btn_details.Enabled = false;
+                    btn_details.Visible = false;
+                    tbFilter.Visible = true;
+                    lblFilter.Visible = true;
                 }
                 else
                 {
                     btn_details.Enabled = false;
                     btn_details.Visible = false;
+                    tbFilter.Visible = false;
+                    lblFilter.Visible = false;
                 }
+
+                
 
             }
             catch (Exception ex)
@@ -109,7 +125,7 @@ namespace Tennisplatzverwaltung
 
         private void btnBuchung_Click(object sender, EventArgs e)
         {
-            new Buchung().ShowDialog();
+            new Buchung(db).ShowDialog();
         }
 
         private void Datenbank_LocationChanged(object sender, EventArgs e)
@@ -117,22 +133,61 @@ namespace Tennisplatzverwaltung
             dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
             dbData.TopMost = true;
             dbData.TopMost = false;
+
+            if (admenue != null)
+            {
+                admenue.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
+                admenue.TopMost = true;
+                admenue.TopMost = false;
+            }
         }
 
         private void btn_details_Click(object sender, EventArgs e)
         {
-            try
+            if (admenue != null)
             {
-                DataGridViewSelectedCellCollection cells = dbData.Datgrid.SelectedCells;
-                String id = cells[cells.Count - 1].OwningRow.Cells[0].Value.ToString().Trim();
-                AdressdatenMenue admenue = new AdressdatenMenue(db, id);
-                admenue.ShowDialog();
+                if (!admenue.Visible)
+                {
+                    admenue = null;
+                    btn_details_Click(this, null);
+                }
             }
-            catch (Exception exc)
+            else
             {
-                AdressdatenMenue admenue = new AdressdatenMenue(db);
-                admenue.ShowDialog();
+                try
+                {
+                    DataGridViewSelectedCellCollection cells = dbData.Datgrid.SelectedCells;
+                    String id = cells[cells.Count - 1].OwningRow.Cells[0].Value.ToString().Trim();
+                    admenue = new AdressdatenMenue(db, id);
+                    admenue.Show();
+
+                }
+                catch (Exception)
+                {
+                    admenue = new AdressdatenMenue(db);
+                    admenue.Show();
+                }
+                if (dbData.Visible == true)
+                {
+                    btnShowPersDat_Click(this, null);
+                }
+                Datenbank_LocationChanged(this, null);
             }
+        }
+
+        private void tbFilter_TextChanged(object sender, EventArgs e)
+        {
+            tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString() +
+                                     " LEFT JOIN `adressdaten` ON " + cbTables.SelectedItem.ToString() + ".`person_id`=`adressdaten`.`person_id`" +
+                                     " WHERE " + cbTables.SelectedItem.ToString() + ".`vorname` LIKE '%" + tbFilter.Text + "%' " +
+                                     " OR " + cbTables.SelectedItem.ToString() + ".`nachname` LIKE '%" + tbFilter.Text + "%' " +
+                                     " OR `adressdaten`.`strasse` LIKE '%" + tbFilter.Text + "%' " +
+                                     " OR `adressdaten`.`ort` LIKE '%" + tbFilter.Text + "%' ");
+            dbData.fillDGV(tblDBData);
+            dbData.Visible = true;
+            dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
+
+            oldSelection = cbTables.SelectedIndex;
         }
     }
 }
