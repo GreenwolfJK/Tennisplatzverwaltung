@@ -155,7 +155,7 @@
             this.tbFilter.Size = new System.Drawing.Size(100, 20);
             this.tbFilter.TabIndex = 14;
             this.tbFilter.Visible = false;
-            this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
+            this.tbFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbFilter_KeyDown);
             // 
             // Datenbank
             // 

@@ -175,19 +175,22 @@ namespace Tennisplatzverwaltung
             }
         }
 
-        private void tbFilter_TextChanged(object sender, EventArgs e)
+        private void tbFilter_KeyDown(object sender, KeyEventArgs e)
         {
-            tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString() +
+            if (e.KeyCode == Keys.Enter)
+            {
+                tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString() +
                                      " LEFT JOIN `adressdaten` ON " + cbTables.SelectedItem.ToString() + ".`person_id`=`adressdaten`.`person_id`" +
                                      " WHERE " + cbTables.SelectedItem.ToString() + ".`vorname` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR " + cbTables.SelectedItem.ToString() + ".`nachname` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR `adressdaten`.`strasse` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR `adressdaten`.`ort` LIKE '%" + tbFilter.Text + "%' ");
-            dbData.fillDGV(tblDBData);
-            dbData.Visible = true;
-            dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
+                dbData.fillDGV(tblDBData);
+                dbData.Visible = true;
+                dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
 
-            oldSelection = cbTables.SelectedIndex;
+                oldSelection = cbTables.SelectedIndex;
+            }
         }
     }
 }
