@@ -61,7 +61,7 @@
             "Platz 4",
             "Platz 5"});
             this.comboBox1.Location = new System.Drawing.Point(33, 42);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(160, 30);
             this.comboBox1.TabIndex = 0;
@@ -103,7 +103,7 @@
             // 
             this.tbStartzeitHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbStartzeitHour.Location = new System.Drawing.Point(79, 111);
-            this.tbStartzeitHour.Margin = new System.Windows.Forms.Padding(4);
+            this.tbStartzeitHour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbStartzeitHour.Name = "tbStartzeitHour";
             this.tbStartzeitHour.Size = new System.Drawing.Size(43, 28);
             this.tbStartzeitHour.TabIndex = 4;
@@ -114,7 +114,7 @@
             // 
             this.tbEndzeitHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEndzeitHour.Location = new System.Drawing.Point(256, 111);
-            this.tbEndzeitHour.Margin = new System.Windows.Forms.Padding(4);
+            this.tbEndzeitHour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbEndzeitHour.Name = "tbEndzeitHour";
             this.tbEndzeitHour.Size = new System.Drawing.Size(43, 28);
             this.tbEndzeitHour.TabIndex = 5;
@@ -170,7 +170,7 @@
             this.btnPrüfen.AutoSize = true;
             this.btnPrüfen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrüfen.Location = new System.Drawing.Point(16, 270);
-            this.btnPrüfen.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrüfen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrüfen.Name = "btnPrüfen";
             this.btnPrüfen.Size = new System.Drawing.Size(161, 34);
             this.btnPrüfen.TabIndex = 10;
@@ -182,7 +182,7 @@
             // 
             this.btnBuchen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuchen.Location = new System.Drawing.Point(335, 270);
-            this.btnBuchen.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuchen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBuchen.Name = "btnBuchen";
             this.btnBuchen.Size = new System.Drawing.Size(161, 34);
             this.btnBuchen.TabIndex = 11;
@@ -238,7 +238,7 @@
             this.lblEndPlaceholder.Size = new System.Drawing.Size(15, 24);
             this.lblEndPlaceholder.TabIndex = 17;
             this.lblEndPlaceholder.Text = ":";
-            // 
+            //
             // btnReset
             // 
             this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -298,7 +298,7 @@
             this.Controls.Add(this.lblPlatzWahl);
             this.Controls.Add(this.comboBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Buchung";
             this.Text = "Buchung";

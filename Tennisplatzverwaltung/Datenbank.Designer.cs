@@ -35,6 +35,7 @@
             this.pbConnected = new System.Windows.Forms.PictureBox();
             this.btnBuchung = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_details = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbConnected)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,11 +122,26 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Tennisplatzverwaltung";
             // 
+            // btn_details
+            // 
+            this.btn_details.AutoSize = true;
+            this.btn_details.Enabled = false;
+            this.btn_details.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_details.Location = new System.Drawing.Point(13, 107);
+            this.btn_details.Name = "btn_details";
+            this.btn_details.Size = new System.Drawing.Size(114, 28);
+            this.btn_details.TabIndex = 12;
+            this.btn_details.Text = "Details";
+            this.btn_details.UseVisualStyleBackColor = true;
+            this.btn_details.Visible = false;
+            this.btn_details.Click += new System.EventHandler(this.btn_details_Click);
+            // 
             // Datenbank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(277, 183);
+            this.Controls.Add(this.btn_details);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuchung);
             this.Controls.Add(this.pbConnected);
@@ -153,5 +169,6 @@
         private System.Windows.Forms.PictureBox pbConnected;
         private System.Windows.Forms.Button btnBuchung;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_details;
     }
 }
