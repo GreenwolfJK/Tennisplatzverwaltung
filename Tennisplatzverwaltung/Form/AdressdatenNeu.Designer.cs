@@ -81,6 +81,8 @@
             this.Controls.Add(this.btn_neuanlage_abbrechen);
             this.Controls.Add(this.btn_neuanlage_ok);
             this.Controls.Add(this.lsb_neuanlage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AdressdatenNeu";
             this.Text = "Adressdaten Neuanlage";
             this.ResumeLayout(false);

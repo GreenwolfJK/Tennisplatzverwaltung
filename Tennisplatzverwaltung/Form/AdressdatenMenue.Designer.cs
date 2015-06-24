@@ -105,6 +105,8 @@
             this.Controls.Add(this.btn_aendern);
             this.Controls.Add(this.btn_anzeigen);
             this.Controls.Add(this.lsb_adressdaten);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AdressdatenMenue";
             this.Text = "Adressdaten";
             this.ResumeLayout(false);

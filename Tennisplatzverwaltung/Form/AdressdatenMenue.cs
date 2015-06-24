@@ -16,6 +16,7 @@ namespace Tennisplatzverwaltung
     {
         ArrayList arr_adressdaten = null;
         DBConnect db = null;
+        int selIdx = -1;
 
         public AdressdatenMenue(DBConnect db)
         {
@@ -36,7 +37,8 @@ namespace Tennisplatzverwaltung
             {
                 if (selId.Equals(((Adressdatensatz)arr_adressdaten[i]).Id.Trim()))
                 {
-                    lsb_adressdaten.SelectedIndex = i;
+                    selIdx = i;
+                    lsb_adressdaten.SelectedIndex = selIdx;
                 }
             }
         }
@@ -87,6 +89,11 @@ namespace Tennisplatzverwaltung
             {
                 lsb_adressdaten.Items.Add(a.lsb_String());
             }
+
+            if (selIdx != -1)
+            {
+                lsb_adressdaten.SelectedIndex = selIdx;
+            }
         }
 
         private void btn_schliessen_Click(object sender, EventArgs e)
@@ -107,6 +114,7 @@ namespace Tennisplatzverwaltung
         {
             if (lsb_adressdaten.SelectedIndex >= 0)
             {
+                selIdx = lsb_adressdaten.SelectedIndex;
                 AdressdatenEinzel a = new AdressdatenEinzel(db, 2, (Adressdatensatz)arr_adressdaten[lsb_adressdaten.SelectedIndex]);
                 a.ShowDialog();
                 load_adressdaten();
@@ -118,6 +126,7 @@ namespace Tennisplatzverwaltung
         {
             if (lsb_adressdaten.SelectedIndex >= 0)
             {
+                selIdx = -1;
                 AdressdatenEinzel a = new AdressdatenEinzel(db, 3, (Adressdatensatz)arr_adressdaten[lsb_adressdaten.SelectedIndex]);
                 a.ShowDialog();
                 load_adressdaten();

@@ -51,7 +51,7 @@
             this.btn_action.Location = new System.Drawing.Point(15, 140);
             this.btn_action.Name = "btn_action";
             this.btn_action.Size = new System.Drawing.Size(75, 23);
-            this.btn_action.TabIndex = 0;
+            this.btn_action.TabIndex = 6;
             this.btn_action.Text = "speichern";
             this.btn_action.UseVisualStyleBackColor = true;
             this.btn_action.Click += new System.EventHandler(this.btn_action_Click);
@@ -61,7 +61,7 @@
             this.btn_schliessen.Location = new System.Drawing.Point(396, 140);
             this.btn_schliessen.Name = "btn_schliessen";
             this.btn_schliessen.Size = new System.Drawing.Size(75, 23);
-            this.btn_schliessen.TabIndex = 1;
+            this.btn_schliessen.TabIndex = 7;
             this.btn_schliessen.Text = "schliessen";
             this.btn_schliessen.UseVisualStyleBackColor = true;
             this.btn_schliessen.Click += new System.EventHandler(this.btn_schliessen_Click);
@@ -80,7 +80,7 @@
             this.txb_id.Location = new System.Drawing.Point(103, 37);
             this.txb_id.Name = "txb_id";
             this.txb_id.Size = new System.Drawing.Size(100, 20);
-            this.txb_id.TabIndex = 3;
+            this.txb_id.TabIndex = 0;
             // 
             // txb_ort
             // 
@@ -95,7 +95,7 @@
             this.lbl_ort.Location = new System.Drawing.Point(222, 109);
             this.lbl_ort.Name = "lbl_ort";
             this.lbl_ort.Size = new System.Drawing.Size(21, 13);
-            this.lbl_ort.TabIndex = 4;
+            this.lbl_ort.TabIndex = 11;
             this.lbl_ort.Text = "Ort";
             // 
             // txb_plz
@@ -103,7 +103,7 @@
             this.txb_plz.Location = new System.Drawing.Point(313, 71);
             this.txb_plz.Name = "txb_plz";
             this.txb_plz.Size = new System.Drawing.Size(158, 20);
-            this.txb_plz.TabIndex = 7;
+            this.txb_plz.TabIndex = 3;
             // 
             // lbl_plz
             // 
@@ -111,7 +111,7 @@
             this.lbl_plz.Location = new System.Drawing.Point(222, 74);
             this.lbl_plz.Name = "lbl_plz";
             this.lbl_plz.Size = new System.Drawing.Size(60, 13);
-            this.lbl_plz.TabIndex = 6;
+            this.lbl_plz.TabIndex = 8;
             this.lbl_plz.Text = "Postleitzahl";
             // 
             // txb_strasse
@@ -119,7 +119,7 @@
             this.txb_strasse.Location = new System.Drawing.Point(313, 37);
             this.txb_strasse.Name = "txb_strasse";
             this.txb_strasse.Size = new System.Drawing.Size(158, 20);
-            this.txb_strasse.TabIndex = 9;
+            this.txb_strasse.TabIndex = 1;
             // 
             // lbl_strasse
             // 
@@ -127,7 +127,7 @@
             this.lbl_strasse.Location = new System.Drawing.Point(222, 40);
             this.lbl_strasse.Name = "lbl_strasse";
             this.lbl_strasse.Size = new System.Drawing.Size(42, 13);
-            this.lbl_strasse.TabIndex = 8;
+            this.lbl_strasse.TabIndex = 14;
             this.lbl_strasse.Text = "Strasse";
             // 
             // txb_nachname
@@ -135,7 +135,7 @@
             this.txb_nachname.Location = new System.Drawing.Point(103, 106);
             this.txb_nachname.Name = "txb_nachname";
             this.txb_nachname.Size = new System.Drawing.Size(100, 20);
-            this.txb_nachname.TabIndex = 11;
+            this.txb_nachname.TabIndex = 4;
             // 
             // lbl_nachname
             // 
@@ -151,7 +151,7 @@
             this.txb_vorname.Location = new System.Drawing.Point(103, 71);
             this.txb_vorname.Name = "txb_vorname";
             this.txb_vorname.Size = new System.Drawing.Size(100, 20);
-            this.txb_vorname.TabIndex = 13;
+            this.txb_vorname.TabIndex = 2;
             // 
             // lbl_vorname
             // 
@@ -169,7 +169,7 @@
             this.lbl_meldung.Location = new System.Drawing.Point(100, 145);
             this.lbl_meldung.Name = "lbl_meldung";
             this.lbl_meldung.Size = new System.Drawing.Size(0, 13);
-            this.lbl_meldung.TabIndex = 14;
+            this.lbl_meldung.TabIndex = 7;
             // 
             // lbl_ueberschrift
             // 
@@ -178,7 +178,7 @@
             this.lbl_ueberschrift.Location = new System.Drawing.Point(12, 11);
             this.lbl_ueberschrift.Name = "lbl_ueberschrift";
             this.lbl_ueberschrift.Size = new System.Drawing.Size(0, 13);
-            this.lbl_ueberschrift.TabIndex = 15;
+            this.lbl_ueberschrift.TabIndex = 6;
             // 
             // AdressdatenEinzel
             // 
@@ -201,6 +201,8 @@
             this.Controls.Add(this.lbl_id);
             this.Controls.Add(this.btn_schliessen);
             this.Controls.Add(this.btn_action);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AdressdatenEinzel";
             this.Text = "AdressdatenEinzel";
             this.ResumeLayout(false);
