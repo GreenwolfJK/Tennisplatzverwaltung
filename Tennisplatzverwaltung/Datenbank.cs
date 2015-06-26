@@ -13,59 +13,77 @@ namespace Tennisplatzverwaltung
 {
     public partial class Datenbank : Form
     {
+        //Connection Objekt
         DBConnect db = new DBConnect();
 
         private DBData dbData = new DBData();
+
+        //Enthält Daten des aktuell ausgewählten Tables
         DataTable tblDBData = new DataTable();
         MySqlDataAdapter da = new MySqlDataAdapter();
+
         AdressdatenMenue admenue = null;
 
+        //Speichervariable für cbTables
         int oldSelection = -1;
 
         public Datenbank()
         {
             InitializeComponent();
 
+            //Zuweisen der Logik des btnSave_Click Events zum SelectionChanged Event des DGV
             dbData.Datgrid.SelectionChanged += btnSave_Click;
 
+            //Verbindung zur Datenbank aufbauen
             if (connectDB())
             {
+                //Falls erfolgreich, ändere Oberfläche entsprechend in positive Rückmeldung
                 lblDBConnected.Text = "connected";
                 lblDBConnected.ForeColor = Color.Green;
                 pbConnected.Image = Image.FromFile("Haken.png");
             }
             else
             {
+                //Falls nicht erfolgreich, ändere Oberfläche in negative Rückmeldung
                 lblDBConnected.Text = "disconnected";
                 lblDBConnected.ForeColor = Color.Red;
                 pbConnected.Image = Image.FromFile("Kreuz.png");
             }
         }
 
+        //Verbinden zur Datenbank
         private bool connectDB()
         {
+            //Zuweisen des Rückgabewerts, ob Verbindung erfolgreich
             bool dbopen = db.openDatabase();
-
-            lblTabelle.Visible = true;
-            cbTables.Visible = true;
-
+            //Falls Verbindung erfolgreich, schalte weitere Benutzeroberflächenelemente frei
+            if (dbopen)
+            {
+                lblTabelle.Visible = true;
+                cbTables.Visible = true;
+            }
             return dbopen;
         }
 
+        //Wird bei SelectionChanged im DGV aufgerufen
         private void btnSave_Click(object sender, EventArgs e)
         {
             db.writeIntoDatabase(tblDBData, cbTables.SelectedItem.ToString());
         }
 
+        //Button mit Logik zum anzeigen/ausblenden des DGV
         private void btnShowPersDat_Click(object sender, EventArgs e)
         {
+            //Falls DGV bereits befüllt
             if (dbData.Datgrid.DataSource != null)
             {
+                //Zeige DGV an
                 if (dbData.Visible == false)
                 {
                     dbData.Visible = true;
                     btnShowPersDat.Text = "<";
                 }
+                //Blende DGV aus
                 else
                 {
                     dbData.Visible = false;
@@ -74,52 +92,58 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        //Event zum Aktualisieren der Daten im DGV
         private void cbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-
+                //Falls gültiger Index
                 if (cbTables.SelectedIndex != -1)
                 {
+                    //Befülle DataTable mit entsprechender SQL Syntax
                     tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString());
+                    //Befülle DGV mit DataTable Daten
                     dbData.fillDGV(tblDBData);
+                    //Zeige Form mit DGV an
                     dbData.Visible = true;
+                    //Setze richtige Position der Form ("Andocken" an Datenbank Form)
                     dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
 
+                    //Cachen des SelectedIndex, Anzeigen des Buttons zum Ein-/Aufklappen der Form
                     oldSelection = cbTables.SelectedIndex;
                     btnShowPersDat.Enabled = true;
                 }
-
-                if (cbTables.SelectedItem.ToString().Equals("adressdaten"))
-                {
-                    btn_details.Enabled = true;
-                    btn_details.Visible = true; 
-                    tbFilter.Visible = false;
-                    lblFilter.Visible = false;
-
-                }
-                else if (cbTables.SelectedItem.ToString().Equals("personendaten"))
-                {
-                    btn_details.Enabled = false;
-                    btn_details.Visible = false;
-                    tbFilter.Visible = true;
-                    lblFilter.Visible = true;
-                }
-                else
-                {
-                    btn_details.Enabled = false;
-                    btn_details.Visible = false;
-                    tbFilter.Visible = false;
-                    lblFilter.Visible = false;
-                }
-
-                
-
             }
+            //Fehler beim Aktualisieren -> Fehlermeldung + Zurücksetzen des Index auf Cache
             catch (Exception ex)
             {
                 MessageBox.Show("Error has occured! " + ex.Message);
                 cbTables.SelectedIndex = oldSelection;
+            }
+            //Falls aktuell ausgewählter Table "adressdaten" entspricht, zeige btn_details an
+            if (cbTables.SelectedItem.ToString().Equals("adressdaten"))
+            {
+                btn_details.Enabled = true;
+                btn_details.Visible = true;
+                tbFilter.Visible = false;
+                lblFilter.Visible = false;
+
+            }
+            //Falls aktuell ausgewählter Table "personendaten" entspricht, zeige Filter an
+            else if (cbTables.SelectedItem.ToString().Equals("personendaten"))
+            {
+                btn_details.Enabled = false;
+                btn_details.Visible = false;
+                tbFilter.Visible = true;
+                lblFilter.Visible = true;
+            }
+            //Ausblenden der Benutzersteuerelemente
+            else
+            {
+                btn_details.Enabled = false;
+                btn_details.Visible = false;
+                tbFilter.Visible = false;
+                lblFilter.Visible = false;
             }
         }
 
@@ -128,6 +152,7 @@ namespace Tennisplatzverwaltung
             new Buchung(db).ShowDialog();
         }
 
+        //Event zum Andocken der DGV Form und der Details Anzeige an Hauptfenster
         private void Datenbank_LocationChanged(object sender, EventArgs e)
         {
             dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);

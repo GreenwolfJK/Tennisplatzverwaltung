@@ -11,22 +11,21 @@ namespace Tennisplatzverwaltung
 {
     public class DBConnect
     {
+        //Instanzieren von MysqlConnection, MySqlCommand und des ConnectionStrings mit entsprechenden Server Informationen
         MySqlConnection connection = null;
         MySqlCommand statement = null;
-        //private String myConnectionString = "SERVER=localhost;" +
-        //                                    "DATABASE=tennis;" +
-        //                                    "UID=tennis;" +
-        //                                    "PASSWORD=tennis;";
         private String myConnectionString = "SERVER=h2440804.stratoserver.net;" +
                                             "DATABASE=Tennisplatzverwaltung;" +
                                             "UID=tennisjogis;" +
                                             "PASSWORD=Bauhausifi11a;";
 
+        //Konstruktor
         public DBConnect()
         {
             connection = new MySqlConnection(myConnectionString);
         }
 
+        //Öffnen der Datenbankverbindung
         public bool openDatabase()
         {
             try
@@ -34,6 +33,7 @@ namespace Tennisplatzverwaltung
                 connection.Open();
                 return true;
             }
+            //Falls keine Verbindung möglich
             catch (Exception e1)
             {
                 Console.WriteLine(e1.Message);
@@ -65,6 +65,7 @@ namespace Tennisplatzverwaltung
             statement.ExecuteNonQuery();
         }
 
+        //Schliessen der Datenbankverbindung
         public bool closeDatabase()
         {
             try
@@ -72,6 +73,7 @@ namespace Tennisplatzverwaltung
                 connection.Close();
                 return true;
             }
+            //Falls Schliessen nicht möglich
             catch (Exception e2)
             {
                 MessageBox.Show("Error has occured!" + e2.Message);
@@ -79,42 +81,47 @@ namespace Tennisplatzverwaltung
             }
         }
 
-        public bool updateDatabase()
-        {
-            return true;
-        }
-
-
+        //Befüllen eines DataTables, Übergabe eines SQL Statements als Parameter
         public DataTable fillTable(string sql)
         {
+            //Initialisieren eines MySqlCommand und MySqlDataAdapter mit entsprechenden Parametern
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
 
+            //Konstruieren des DataTables, befüllen des Tables durch DataAdapter und Zurückgeben
             DataTable tbl = new DataTable();
             da.Fill(tbl);
             return tbl;
         }
 
+        //Schreiben der Änderungen im DGV in die Datenbank
         public bool writeIntoDatabase(DataTable tbl, string cbItem)
         {
+            //Rückgabewert
             bool success = false;
 
+            //Modulare Erstellung des Select Statements entsprechend des aktuell ausgewählten Tables
             using (MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + cbItem, connection))
             {
+                //Erzeugen und Initialisieren eine DataAdapters und CommandBuilders
                 MySqlDataAdapter da = new MySqlDataAdapter(sqlCom);
                 MySqlCommandBuilder cmb = new MySqlCommandBuilder(da);
 
+                //Zuweisen der vom CommandBuilder erstellten Insert, Delete und Update Commands and den DataAdapter
                 da.InsertCommand = cmb.GetInsertCommand();
                 da.DeleteCommand = cmb.GetDeleteCommand();
                 da.UpdateCommand = cmb.GetUpdateCommand();
 
+                //Zuweisen eines Primary Keys an das übergebene DataTable Objekt
                 tbl.PrimaryKey = new DataColumn[] { tbl.Columns[0] };
 
                 try
                 {
+                    //Versuche mit DataAdapter Änderungen in die Datenbank zu updaten
                     da.Update(tbl);
                     success = true;
                 }
+                //Falls nicht möglich, success -> false + Fehlermeldung
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error has occured!" + ex.Message);
@@ -133,7 +140,6 @@ namespace Tennisplatzverwaltung
                 cmd.Parameters.AddWithValue("nachname", nachname);
                 try 
 	            {	   
-     
 		            MySqlDataReader reader = cmd.ExecuteReader();
                        
                     while(reader.Read())
@@ -149,7 +155,6 @@ namespace Tennisplatzverwaltung
             
             }
             return personID;
-       
         }
     }
 }

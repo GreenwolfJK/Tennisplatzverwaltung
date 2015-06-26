@@ -12,6 +12,7 @@ namespace Tennisplatzverwaltung
 {
     public partial class DBData : Form
     {
+        //getter für DGV
         public DataGridView Datgrid
         {
             get { return dgvDBData; }
@@ -22,8 +23,10 @@ namespace Tennisplatzverwaltung
             InitializeComponent();
         }
 
+        //Befüllen des DGV mit übergebenem Table
         public void fillDGV(DataTable tbl)
         {
+            //Setzen der DataSource des DGV auf übergebenen Table
             dgvDBData.DataSource = tbl;
         }
     }
