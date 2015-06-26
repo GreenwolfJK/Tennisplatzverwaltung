@@ -15,6 +15,7 @@ namespace Tennisplatzverwaltung
         private String plz;
         private String ort;
 
+        // Setzt den String für die Listbox zusammen
         public String lsb_String()
         {
             return (id + " | " + vorname + " " + nachname + " | " + strasse + ", " + plz + " " + ort);

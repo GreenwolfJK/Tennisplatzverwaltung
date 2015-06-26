@@ -18,6 +18,7 @@ namespace Tennisplatzverwaltung
         DBConnect db = null;
         int selIdx = -1;
 
+        // Konstruktor, welcher nur die DB Verbindung übergeben kriegt
         public AdressdatenMenue(DBConnect db)
         {
             this.db = db;
@@ -26,6 +27,7 @@ namespace Tennisplatzverwaltung
             refresh_lsb();
         }
 
+        // Konstruktor, welcher die DB Verbindung und die ausgewählte person_id übergeben kriegt
         public AdressdatenMenue(DBConnect db, String selId)
         {
             this.db = db;
@@ -33,6 +35,7 @@ namespace Tennisplatzverwaltung
             load_adressdaten();
             refresh_lsb();
 
+            // Setzt das markierte Element anhand der übergebenen person_id
             for (int i = 0; i < arr_adressdaten.Count; i++)
             {
                 if (selId.Equals(((Adressdatensatz)arr_adressdaten[i]).Id.Trim()))
@@ -43,6 +46,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Holt alle Adressdaten aus der Tabelle und joint den Namen dazu
         private void load_adressdaten()
         {
             MySqlDataReader reader = null;
@@ -81,6 +85,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Hält jeweils die Listbox auf dem aktuellen Stand der geladenen Daten
         private void refresh_lsb()
         {
             lsb_adressdaten.Items.Clear();
@@ -101,6 +106,7 @@ namespace Tennisplatzverwaltung
             this.Close();
         }
 
+        // Ausschließliche Anzeige des ausgewählten Datensatzes
         private void btn_anzeigen_Click(object sender, EventArgs e)
         {
             if (lsb_adressdaten.SelectedIndex >= 0)
@@ -110,6 +116,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Öffnet Dialog zum Ändern der Adressdaten und aktualisiert anschließend die Anzeige
         private void btn_aendern_Click(object sender, EventArgs e)
         {
             if (lsb_adressdaten.SelectedIndex >= 0)
@@ -122,6 +129,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Öffnet Dialog zum Löschen des Datensatzes und aktualisiert anschließend die Anzeige
         private void btn_loeschen_Click(object sender, EventArgs e)
         {
             if (lsb_adressdaten.SelectedIndex >= 0)
@@ -134,6 +142,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Öffnet Dialog zur Neuanlage und aktualisiert am Ende die Anzeige
         private void btn_neu_Click(object sender, EventArgs e)
         {
             AdressdatenNeu a = new AdressdatenNeu(db);
