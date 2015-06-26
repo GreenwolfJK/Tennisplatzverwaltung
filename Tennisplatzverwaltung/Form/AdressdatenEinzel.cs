@@ -18,7 +18,7 @@ namespace Tennisplatzverwaltung
         int modus = 0; // 0 = Neuanlage, 1 = anzeigen, 2 = ändern, 3 = löschen
         int key;
 
-        //Neuanlage
+        // Konstruktor, welcher aus dem Fenster AdressdatenNeu heraus aufgerufen wird
         public AdressdatenEinzel(DBConnect db, int key)
         {
             this.db = db;
@@ -54,6 +54,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Konstruktor für Anzeige, Ändern und Löschen
         public AdressdatenEinzel(DBConnect db, int modus, Adressdatensatz a)
         {
             this.db = db;
@@ -121,6 +122,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Stellt sicher, dass keine leeren Werte geschrieben werden können
         private bool validateParameter()
         {
             if (txb_strasse.Text.Length == 0)
@@ -143,6 +145,7 @@ namespace Tennisplatzverwaltung
             this.Close();
         }
 
+        // Action wird anhand des Modus festgelegt
         private void btn_action_Click(object sender, EventArgs e)
         {
             if (validateParameter())

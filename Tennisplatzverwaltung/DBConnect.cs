@@ -22,11 +22,13 @@ namespace Tennisplatzverwaltung
                                             "UID=tennisjogis;" +
                                             "PASSWORD=Bauhausifi11a;";
 
+        // Verindung wird mit Connection String zur MySQL Datenbank aufgesetzt
         public DBConnect()
         {
             connection = new MySqlConnection(myConnectionString);
         }
 
+        // Öffnet die Datenbankverbindung
         public bool openDatabase()
         {
             try
@@ -36,11 +38,12 @@ namespace Tennisplatzverwaltung
             }
             catch (Exception e1)
             {
-                Console.WriteLine(e1.Message);
+                MessageBox.Show("Error has occured:\n" + e1.Message);
                 return false;
             }
         }
 
+        // Setzt einen normalen Query ab und gibt das Ergebnis im Reader zurück
         public MySqlDataReader executeQuery(string sql)
         {
             MySqlCommand command = connection.CreateCommand();
@@ -50,21 +53,25 @@ namespace Tennisplatzverwaltung
             return reader;
         }
 
+        // PreparedStatements zum Modifizieren der Tabellen; SQL-Injection versichert
         public void prepareStatement(String sql)
         {
             this.statement = new MySqlCommand(sql, connection);
         }
 
+        // Füllt das Statement mit den Parametern
         public void addParamToStatement(String pos, Object param)
         {
             statement.Parameters.AddWithValue(pos, param);
         }
 
+        // Setzt das Statement ab
         public void executeStatement()
         {
             statement.ExecuteNonQuery();
         }
 
+        // Schliesst die Verbindung
         public bool closeDatabase()
         {
             try
@@ -74,16 +81,10 @@ namespace Tennisplatzverwaltung
             }
             catch (Exception e2)
             {
-                MessageBox.Show("Error has occured!" + e2.Message);
+                MessageBox.Show("Error has occured:\n" + e2.Message);
                 return false;
             }
         }
-
-        public bool updateDatabase()
-        {
-            return true;
-        }
-
 
         public DataTable fillTable(string sql)
         {

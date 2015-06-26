@@ -142,8 +142,10 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Logik zur Anzeige der Menüfenster für Adressdaten mit Übergabe der person_id
         private void btn_details_Click(object sender, EventArgs e)
         {
+            // Konstrukt stellt sicher, dass das Fenster nicht mehrfach geöffnet wird
             if (admenue != null)
             {
                 if (!admenue.Visible)
@@ -154,13 +156,13 @@ namespace Tennisplatzverwaltung
             }
             else
             {
+                // Wenn er einen ausgewählten Satz kriegt, übergibt er den Parameter person_id, ansonsten ohne Übergabe
                 try
                 {
                     DataGridViewSelectedCellCollection cells = dbData.Datgrid.SelectedCells;
                     String id = cells[cells.Count - 1].OwningRow.Cells[0].Value.ToString().Trim();
                     admenue = new AdressdatenMenue(db, id);
                     admenue.Show();
-
                 }
                 catch (Exception)
                 {
