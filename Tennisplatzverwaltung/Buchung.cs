@@ -26,6 +26,17 @@ namespace Tennisplatzverwaltung
             // ... Code einfügen ...
             // Prüfen ob Platz bereits belegt ist
             // ... Code einfügen ...
+            Buchungscheck bc = new Buchungscheck();
+            //MessageBox mb = new MessageBox();
+
+            if (bc.checkBuchung())
+            {
+                MessageBox.Show("Passt");
+            }
+            else
+            {
+                MessageBox.Show("Passt nicht");
+            }
         }
 
         private void btnBuchen_Click(object sender, EventArgs e)
