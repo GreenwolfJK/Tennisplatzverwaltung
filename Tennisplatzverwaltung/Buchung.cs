@@ -18,7 +18,9 @@ namespace Tennisplatzverwaltung
         {
             dbBuchen = db;
             InitializeComponent();
-            
+            //  Change  Date-Format in Constructor
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
         }
 
         private void btnPrüfen_Click(object sender, EventArgs e)
@@ -30,12 +32,45 @@ namespace Tennisplatzverwaltung
 
         private void btnBuchen_Click(object sender, EventArgs e)
         {
-            int personId = dbBuchen.getPersonId(tbVorname.Text, tbNachname.Text);
-            MessageBox.Show(personId.ToString());
+            // Helper for unknown Person-Ids
+            int personId = 0;
+
+            if (tbPersonId.Text == "")
+            {
+                // Get PersonId, cause we book with PersonId
+                personId = dbBuchen.getPersonId(tbVorname.Text, tbNachname.Text);
+                MessageBox.Show(personId.ToString());
+            }
+            else
+            {
+                personId = dbBuchen.checkPersonId(Convert.ToInt32(tbPersonId.Text));
+                //int personId = Convert.ToInt32(tbPersonId.Text);
+            }
+
             if (personId == 0)
             {
-                MessageBox.Show("Kein Kunde gefunden");
+                MessageBox.Show("Kein Kunde gefunden.\nBitte Daten korrigieren.");
             }
+            else
+            {
+                //DateTimeBuilder Method
+                DateTime startDateTime = buildTime(dateTimePicker1.Text.ToString(),tbStartzeitHour.Text, tbStartzeitMin.Text);
+                DateTime endDateTimee = buildTime(dateTimePicker1.Text.ToString(), tbEndzeitHour.Text, tbEndzeitMin.Text);
+                string platz = cBPlatz.Text;
+                //dbBuchen.buchungAnlegen(personId, platz, startDateTime, endDateTime)
+            }
+        }
+
+        private DateTime buildTime(string date, string hour, string min)
+        {
+            DateTime dateTime;
+            string dateTimeString = date + " " + hour + ":" + min + ":00";
+
+            dateTime = new DateTime();
+            MessageBox.Show(dateTimeString);
+            dateTime = DateTime.ParseExact(dateTimeString, "dd-MM-yyyy HH:mm:ss",null);
+        
+            return dateTime;
         }
 
         private void tbPersonId_TextChanged(object sender, EventArgs e)

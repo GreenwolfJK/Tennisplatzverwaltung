@@ -149,7 +149,31 @@ namespace Tennisplatzverwaltung
             
             }
             return personID;
-       
+        }
+
+        public int checkPersonId(int personId)
+        {
+            using (MySqlCommand cmd = new MySqlCommand("SELECT EXISTS(SELECT 1 FROM personendaten WHERE person_id = @personId LIMIT 1)", connection))
+            {
+                cmd.Parameters.AddWithValue("personId", personId);
+                try 
+	            {
+                    var requestResult = cmd.ExecuteScalar();
+
+                    int result = Convert.ToInt32(requestResult.ToString());
+
+                    return result;
+	            }
+	            catch (Exception ex)
+	            {
+		            MessageBox.Show("Error has occured!" + ex.Message);
+
+                    int result = 0;
+
+                    return result;
+	            }
+            
+            }
         }
     }
 }
