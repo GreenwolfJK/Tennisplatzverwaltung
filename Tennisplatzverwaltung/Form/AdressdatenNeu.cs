@@ -28,6 +28,7 @@ namespace Tennisplatzverwaltung
             
         }
 
+        // Läd durch den Select alle Datensätze aus der Tabelle personendaten, welche kein Match in adressdaten haben
         private void load_personendaten() 
         {
             MySqlDataReader reader = null;
@@ -58,6 +59,7 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Füllt die Listbox mit den selektierten Daten
         private void refresh_lsb()
         {
             lsb_neuanlage.Items.Clear();
@@ -73,6 +75,7 @@ namespace Tennisplatzverwaltung
             this.Close();
         }
 
+        // Übergibt den ausgewählten Key (=person_id) der Form AdressdatenEinzel, damit die Adressdaten angelegt werden können
         private void btn_neuanlage_ok_Click(object sender, EventArgs e)
         {
             if (lsb_neuanlage.SelectedIndex >= 0)

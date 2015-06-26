@@ -167,8 +167,10 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Logik zur Anzeige der Menüfenster für Adressdaten mit Übergabe der person_id
         private void btn_details_Click(object sender, EventArgs e)
         {
+            // Konstrukt stellt sicher, dass das Fenster nicht mehrfach geöffnet wird
             if (admenue != null)
             {
                 if (!admenue.Visible)
@@ -179,13 +181,13 @@ namespace Tennisplatzverwaltung
             }
             else
             {
+                // Wenn er einen ausgewählten Satz kriegt, übergibt er den Parameter person_id, ansonsten ohne Übergabe
                 try
                 {
                     DataGridViewSelectedCellCollection cells = dbData.Datgrid.SelectedCells;
                     String id = cells[cells.Count - 1].OwningRow.Cells[0].Value.ToString().Trim();
                     admenue = new AdressdatenMenue(db, id);
                     admenue.Show();
-
                 }
                 catch (Exception)
                 {
@@ -200,19 +202,22 @@ namespace Tennisplatzverwaltung
             }
         }
 
-        private void tbFilter_TextChanged(object sender, EventArgs e)
+        private void tbFilter_KeyDown(object sender, KeyEventArgs e)
         {
-            tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString() +
+            if (e.KeyCode == Keys.Enter)
+            {
+                tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString() +
                                      " LEFT JOIN `adressdaten` ON " + cbTables.SelectedItem.ToString() + ".`person_id`=`adressdaten`.`person_id`" +
                                      " WHERE " + cbTables.SelectedItem.ToString() + ".`vorname` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR " + cbTables.SelectedItem.ToString() + ".`nachname` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR `adressdaten`.`strasse` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR `adressdaten`.`ort` LIKE '%" + tbFilter.Text + "%' ");
-            dbData.fillDGV(tblDBData);
-            dbData.Visible = true;
-            dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
+                dbData.fillDGV(tblDBData);
+                dbData.Visible = true;
+                dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
 
-            oldSelection = cbTables.SelectedIndex;
+                oldSelection = cbTables.SelectedIndex;
+            }
         }
     }
 }
