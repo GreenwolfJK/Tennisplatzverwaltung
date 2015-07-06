@@ -29,7 +29,11 @@ namespace Tennisplatzverwaltung
             // ... Code einfügen ...
             // Prüfen ob Platz bereits belegt ist
             // ... Code einfügen ...
-            Buchungscheck bc = new Buchungscheck();
+            Buchungscheck bc = new Buchungscheck(cBPlatz.SelectedIndex + 1,
+                                                     dateTimePicker1.Value,
+                                                     new Time(Convert.ToInt32(tbStartzeitHour.Text), Convert.ToInt32(tbStartzeitMin.Text)),
+                                                     new Time(Convert.ToInt32(tbEndzeitHour.Text), Convert.ToInt32(tbEndzeitMin.Text)),
+                                                     tbVorname.Text + " " + tbNachname.Text);
             //MessageBox mb = new MessageBox();
 
             if (bc.checkBuchung())
