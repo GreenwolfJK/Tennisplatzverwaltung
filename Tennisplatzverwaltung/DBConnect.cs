@@ -176,5 +176,26 @@ namespace Tennisplatzverwaltung
             
             }
         }
+
+        internal void buchungAnlegen(int personId, string platz, DateTime startDateTime, DateTime endDateTime)
+        {
+            //throw new NotImplementedException();
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = "INSERT INTO buchungen (personendaten_id, platz_id, datum_start, datum_end) VALUES (@personId, @platz, @startDateTime, @endDateTime)";
+                cmd.Parameters.AddWithValue("@personId", personId);
+                cmd.Parameters.AddWithValue("@platz", platz);
+                cmd.Parameters.AddWithValue("@startDateTime", startDateTime);
+                cmd.Parameters.AddWithValue("@endDateTime", endDateTime);
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error has occured!" + ex.Message);
+            }
+
+        }
     }
 }

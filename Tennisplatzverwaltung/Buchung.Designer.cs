@@ -104,22 +104,28 @@
             this.tbStartzeitHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbStartzeitHour.Location = new System.Drawing.Point(79, 111);
             this.tbStartzeitHour.Margin = new System.Windows.Forms.Padding(4);
+            this.tbStartzeitHour.MaxLength = 2;
             this.tbStartzeitHour.Name = "tbStartzeitHour";
             this.tbStartzeitHour.Size = new System.Drawing.Size(43, 28);
-            this.tbStartzeitHour.TabIndex = 4;
+            this.tbStartzeitHour.TabIndex = 2;
             this.tbStartzeitHour.Text = "HH";
             this.tbStartzeitHour.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbStartzeitHour.Enter += new System.EventHandler(this.tbStartzeitHour_Enter);
+            this.tbStartzeitHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStartzeitHour_KeyPress);
             // 
             // tbEndzeitHour
             // 
             this.tbEndzeitHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEndzeitHour.Location = new System.Drawing.Point(256, 111);
             this.tbEndzeitHour.Margin = new System.Windows.Forms.Padding(4);
+            this.tbEndzeitHour.MaxLength = 2;
             this.tbEndzeitHour.Name = "tbEndzeitHour";
             this.tbEndzeitHour.Size = new System.Drawing.Size(43, 28);
-            this.tbEndzeitHour.TabIndex = 5;
+            this.tbEndzeitHour.TabIndex = 4;
             this.tbEndzeitHour.Text = "HH";
             this.tbEndzeitHour.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbEndzeitHour.Enter += new System.EventHandler(this.tbEndzeitHour_Enter);
+            this.tbEndzeitHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEndzeitHour_KeyPress);
             // 
             // lblVorname
             // 
@@ -151,7 +157,7 @@
             this.tbVorname.Multiline = true;
             this.tbVorname.Name = "tbVorname";
             this.tbVorname.Size = new System.Drawing.Size(132, 24);
-            this.tbVorname.TabIndex = 8;
+            this.tbVorname.TabIndex = 7;
             this.tbVorname.TextChanged += new System.EventHandler(this.tbNames_TextChanged);
             // 
             // tbNachname
@@ -162,7 +168,7 @@
             this.tbNachname.Multiline = true;
             this.tbNachname.Name = "tbNachname";
             this.tbNachname.Size = new System.Drawing.Size(132, 24);
-            this.tbNachname.TabIndex = 9;
+            this.tbNachname.TabIndex = 8;
             this.tbNachname.TextChanged += new System.EventHandler(this.tbNames_TextChanged);
             // 
             // btnPrüfen
@@ -173,7 +179,7 @@
             this.btnPrüfen.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrüfen.Name = "btnPrüfen";
             this.btnPrüfen.Size = new System.Drawing.Size(161, 34);
-            this.btnPrüfen.TabIndex = 10;
+            this.btnPrüfen.TabIndex = 9;
             this.btnPrüfen.Text = "Buchung prüfen";
             this.btnPrüfen.UseVisualStyleBackColor = true;
             this.btnPrüfen.Click += new System.EventHandler(this.btnPrüfen_Click);
@@ -195,7 +201,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(33, 79);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(355, 22);
-            this.dateTimePicker1.TabIndex = 12;
+            this.dateTimePicker1.TabIndex = 1;
             this.dateTimePicker1.Value = new System.DateTime(2015, 7, 5, 0, 0, 0, 0);
             // 
             // lblStartPlaceholder
@@ -213,22 +219,28 @@
             this.tbStartzeitMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbStartzeitMin.Location = new System.Drawing.Point(151, 111);
             this.tbStartzeitMin.Margin = new System.Windows.Forms.Padding(4);
+            this.tbStartzeitMin.MaxLength = 2;
             this.tbStartzeitMin.Name = "tbStartzeitMin";
             this.tbStartzeitMin.Size = new System.Drawing.Size(43, 28);
-            this.tbStartzeitMin.TabIndex = 15;
+            this.tbStartzeitMin.TabIndex = 3;
             this.tbStartzeitMin.Text = "MM";
             this.tbStartzeitMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbStartzeitMin.Enter += new System.EventHandler(this.tbStartzeitMin_Enter);
+            this.tbStartzeitMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStartzeitMin_KeyPress);
             // 
             // tbEndzeitMin
             // 
             this.tbEndzeitMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEndzeitMin.Location = new System.Drawing.Point(328, 111);
             this.tbEndzeitMin.Margin = new System.Windows.Forms.Padding(4);
+            this.tbEndzeitMin.MaxLength = 2;
             this.tbEndzeitMin.Name = "tbEndzeitMin";
             this.tbEndzeitMin.Size = new System.Drawing.Size(43, 28);
-            this.tbEndzeitMin.TabIndex = 16;
+            this.tbEndzeitMin.TabIndex = 5;
             this.tbEndzeitMin.Text = "MM";
             this.tbEndzeitMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbEndzeitMin.Enter += new System.EventHandler(this.tbEndzeitMin_Enter);
+            this.tbEndzeitMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEndzeitMin_KeyPress);
             // 
             // lblEndPlaceholder
             // 
@@ -247,7 +259,7 @@
             this.btnReset.Margin = new System.Windows.Forms.Padding(4);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(161, 34);
-            this.btnReset.TabIndex = 18;
+            this.btnReset.TabIndex = 10;
             this.btnReset.Text = "Bearbeiten";
             this.btnReset.UseVisualStyleBackColor = true;
             // 
@@ -259,8 +271,9 @@
             this.tbPersonId.Multiline = true;
             this.tbPersonId.Name = "tbPersonId";
             this.tbPersonId.Size = new System.Drawing.Size(132, 24);
-            this.tbPersonId.TabIndex = 19;
+            this.tbPersonId.TabIndex = 6;
             this.tbPersonId.TextChanged += new System.EventHandler(this.tbPersonId_TextChanged);
+            this.tbPersonId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPersonId_KeyPress);
             // 
             // lblPersonId
             // 

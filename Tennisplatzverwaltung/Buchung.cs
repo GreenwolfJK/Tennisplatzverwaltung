@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -66,9 +67,11 @@ namespace Tennisplatzverwaltung
             {
                 //DateTimeBuilder Method
                 DateTime startDateTime = buildTime(dateTimePicker1.Text.ToString(),tbStartzeitHour.Text, tbStartzeitMin.Text);
-                DateTime endDateTimee = buildTime(dateTimePicker1.Text.ToString(), tbEndzeitHour.Text, tbEndzeitMin.Text);
+                DateTime endDateTime = buildTime(dateTimePicker1.Text.ToString(), tbEndzeitHour.Text, tbEndzeitMin.Text);
                 string platz = cBPlatz.Text;
-                //dbBuchen.buchungAnlegen(personId, platz, startDateTime, endDateTime)
+                string placeId = Regex.Replace(platz, "Platz ", "");
+                
+                dbBuchen.buchungAnlegen(personId, placeId, startDateTime, endDateTime);
             }
         }
 
@@ -107,6 +110,63 @@ namespace Tennisplatzverwaltung
             else
             {
                 tbPersonId.Enabled = true;
+            }
+        }
+
+        private void tbStartzeitHour_Enter(object sender, EventArgs e)
+        {
+            tbStartzeitHour.Text = "";
+        }
+
+        private void tbStartzeitMin_Enter(object sender, EventArgs e)
+        {
+            tbStartzeitMin.Text = "";
+        }
+
+        private void tbEndzeitHour_Enter(object sender, EventArgs e)
+        {
+            tbEndzeitHour.Text = "";
+        }
+
+        private void tbEndzeitMin_Enter(object sender, EventArgs e)
+        {
+            tbEndzeitMin.Text = "";
+        }
+
+        private void tbStartzeitHour_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            bool numbercheck = allowOnlyNumbers(sender, e);
+        }
+
+        private void tbStartzeitMin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            bool numbercheck = allowOnlyNumbers(sender, e);
+        }
+
+        private void tbEndzeitHour_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            bool numbercheck = allowOnlyNumbers(sender, e);
+        }
+
+        private void tbEndzeitMin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            bool numbercheck = allowOnlyNumbers(sender, e);
+        }
+
+        private void tbPersonId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            bool numbercheck = allowOnlyNumbers(sender,e);
+        }
+
+        private bool allowOnlyNumbers(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                return e.Handled = true;
+            }
+            else
+            {
+                return e.Handled = false;
             }
         }
     }
