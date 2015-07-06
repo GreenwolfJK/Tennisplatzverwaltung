@@ -202,21 +202,24 @@ namespace Tennisplatzverwaltung
             }
         }
 
+        // Funktion für den Filter, der mit der Enter-Taste getriggert wird
         private void tbFilter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                // SQL-Abfrage auf Vorname, Nachname, Telefonnummer, Geburtsdatum, PLZ, Strasse und Ort ist möglich
+                // Hierfür wird der Inhalt der Textbox "Filter" als Vergleichswert für die Abfrage genutzt
                 tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString() +
                                      " LEFT JOIN `adressdaten` ON " + cbTables.SelectedItem.ToString() + ".`person_id`=`adressdaten`.`person_id`" +
                                      " WHERE " + cbTables.SelectedItem.ToString() + ".`vorname` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR " + cbTables.SelectedItem.ToString() + ".`nachname` LIKE '%" + tbFilter.Text + "%' " +
+                                     " OR " + cbTables.SelectedItem.ToString() + ".`telefonnr` LIKE '%" + tbFilter.Text + "%' " +
+                                     " OR " + cbTables.SelectedItem.ToString() + ".`geburtstag` LIKE '%" + tbFilter.Text + "%' " +
+                                     " OR `adressdaten`.`plz` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR `adressdaten`.`strasse` LIKE '%" + tbFilter.Text + "%' " +
                                      " OR `adressdaten`.`ort` LIKE '%" + tbFilter.Text + "%' ");
                 dbData.fillDGV(tblDBData);
                 dbData.Visible = true;
-                dbData.SetDesktopLocation(this.Location.X + this.Width, this.Location.Y);
-
-                oldSelection = cbTables.SelectedIndex;
             }
         }
     }
