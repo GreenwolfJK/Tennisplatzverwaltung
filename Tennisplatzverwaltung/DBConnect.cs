@@ -188,7 +188,6 @@ namespace Tennisplatzverwaltung
 
         internal void buchungAnlegen(int personId, string platz, DateTime startDateTime, DateTime endDateTime)
         {
-            //throw new NotImplementedException();
             try
             {
                 MySqlCommand cmd = connection.CreateCommand();
@@ -198,6 +197,8 @@ namespace Tennisplatzverwaltung
                 cmd.Parameters.AddWithValue("@startDateTime", startDateTime);
                 cmd.Parameters.AddWithValue("@endDateTime", endDateTime);
                 cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Buchung gespeichert");
             }
 
             catch (Exception ex)

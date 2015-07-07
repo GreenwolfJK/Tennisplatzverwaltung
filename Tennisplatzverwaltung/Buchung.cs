@@ -38,11 +38,7 @@ namespace Tennisplatzverwaltung
 
             if (bc.checkBuchung())
             {
-                MessageBox.Show("Passt");
-            }
-            else
-            {
-                MessageBox.Show("Passt nicht");
+                btnBuchen.Enabled = true;
             }
         }
 
@@ -120,21 +116,25 @@ namespace Tennisplatzverwaltung
         private void tbStartzeitHour_Enter(object sender, EventArgs e)
         {
             tbStartzeitHour.Text = "";
+            bearbeitenModus();
         }
 
         private void tbStartzeitMin_Enter(object sender, EventArgs e)
         {
             tbStartzeitMin.Text = "";
+            bearbeitenModus();
         }
 
         private void tbEndzeitHour_Enter(object sender, EventArgs e)
         {
             tbEndzeitHour.Text = "";
+            bearbeitenModus();
         }
 
         private void tbEndzeitMin_Enter(object sender, EventArgs e)
         {
             tbEndzeitMin.Text = "";
+            bearbeitenModus();
         }
 
         private void tbStartzeitHour_KeyPress(object sender, KeyPressEventArgs e)
@@ -171,6 +171,39 @@ namespace Tennisplatzverwaltung
             else
             {
                 return e.Handled = false;
+            }
+        }
+
+        private void cBPlatz_Enter(object sender, EventArgs e)
+        {
+            bearbeitenModus();
+        }
+
+        private void dateTimePicker1_Enter(object sender, EventArgs e)
+        {
+            bearbeitenModus();
+        }
+
+        private void tbPersonId_Enter(object sender, EventArgs e)
+        {
+            bearbeitenModus();
+        }
+
+        private void tbVorname_Enter(object sender, EventArgs e)
+        {
+            bearbeitenModus();
+        }
+
+        private void tbNachname_Enter(object sender, EventArgs e)
+        {
+            bearbeitenModus();
+        }
+
+        private void bearbeitenModus()
+        {
+            if(btnBuchen.Enabled ==  true)
+            {
+                btnBuchen.Enabled = false;
             }
         }
     }

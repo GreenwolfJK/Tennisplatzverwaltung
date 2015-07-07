@@ -45,7 +45,6 @@
             this.tbStartzeitMin = new System.Windows.Forms.TextBox();
             this.tbEndzeitMin = new System.Windows.Forms.TextBox();
             this.lblEndPlaceholder = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
             this.tbPersonId = new System.Windows.Forms.TextBox();
             this.lblPersonId = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -65,6 +64,7 @@
             this.cBPlatz.Name = "cBPlatz";
             this.cBPlatz.Size = new System.Drawing.Size(160, 30);
             this.cBPlatz.TabIndex = 0;
+            this.cBPlatz.Enter += new System.EventHandler(this.cBPlatz_Enter);
             // 
             // lblPlatzWahl
             // 
@@ -159,6 +159,7 @@
             this.tbVorname.Size = new System.Drawing.Size(132, 24);
             this.tbVorname.TabIndex = 7;
             this.tbVorname.TextChanged += new System.EventHandler(this.tbNames_TextChanged);
+            this.tbVorname.Enter += new System.EventHandler(this.tbVorname_Enter);
             // 
             // tbNachname
             // 
@@ -170,6 +171,7 @@
             this.tbNachname.Size = new System.Drawing.Size(132, 24);
             this.tbNachname.TabIndex = 8;
             this.tbNachname.TextChanged += new System.EventHandler(this.tbNames_TextChanged);
+            this.tbNachname.Enter += new System.EventHandler(this.tbNachname_Enter);
             // 
             // btnPrüfen
             // 
@@ -186,6 +188,7 @@
             // 
             // btnBuchen
             // 
+            this.btnBuchen.Enabled = false;
             this.btnBuchen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuchen.Location = new System.Drawing.Point(335, 270);
             this.btnBuchen.Margin = new System.Windows.Forms.Padding(4);
@@ -203,6 +206,7 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(355, 22);
             this.dateTimePicker1.TabIndex = 1;
             this.dateTimePicker1.Value = new System.DateTime(2015, 7, 5, 0, 0, 0, 0);
+            this.dateTimePicker1.Enter += new System.EventHandler(this.dateTimePicker1_Enter);
             // 
             // lblStartPlaceholder
             // 
@@ -252,17 +256,6 @@
             this.lblEndPlaceholder.TabIndex = 17;
             this.lblEndPlaceholder.Text = ":";
             // 
-            // btnReset
-            // 
-            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(335, 228);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(161, 34);
-            this.btnReset.TabIndex = 10;
-            this.btnReset.Text = "Bearbeiten";
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
             // tbPersonId
             // 
             this.tbPersonId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -273,6 +266,7 @@
             this.tbPersonId.Size = new System.Drawing.Size(132, 24);
             this.tbPersonId.TabIndex = 6;
             this.tbPersonId.TextChanged += new System.EventHandler(this.tbPersonId_TextChanged);
+            this.tbPersonId.Enter += new System.EventHandler(this.tbPersonId_Enter);
             this.tbPersonId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPersonId_KeyPress);
             // 
             // lblPersonId
@@ -293,7 +287,6 @@
             this.ClientSize = new System.Drawing.Size(512, 322);
             this.Controls.Add(this.lblPersonId);
             this.Controls.Add(this.tbPersonId);
-            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblEndPlaceholder);
             this.Controls.Add(this.tbEndzeitMin);
             this.Controls.Add(this.tbStartzeitMin);
@@ -340,7 +333,6 @@
         private System.Windows.Forms.TextBox tbStartzeitMin;
         private System.Windows.Forms.TextBox tbEndzeitMin;
         private System.Windows.Forms.Label lblEndPlaceholder;
-        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.TextBox tbPersonId;
         private System.Windows.Forms.Label lblPersonId;
     }
