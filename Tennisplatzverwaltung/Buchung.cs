@@ -29,17 +29,24 @@ namespace Tennisplatzverwaltung
             // ... Code einfügen ...
             // Prüfen ob Platz bereits belegt ist
             // ... Code einfügen ...
-            Buchungscheck bc = new Buchungscheck(cBPlatz.SelectedIndex + 1,
-                                                     dateTimePicker1.Value,
-                                                     new Time(Convert.ToInt32(tbStartzeitHour.Text), Convert.ToInt32(tbStartzeitMin.Text)),
-                                                     new Time(Convert.ToInt32(tbEndzeitHour.Text), Convert.ToInt32(tbEndzeitMin.Text)),
-                                                     tbVorname.Text + " " + tbNachname.Text);
-            //MessageBox mb = new MessageBox();
-
-            if (bc.checkBuchung())
+            try
             {
-                btnBuchen.Enabled = true;
+                Buchungscheck bc = new Buchungscheck(cBPlatz.SelectedIndex + 1,
+                                                         dateTimePicker1.Value,
+                                                         new Time(Convert.ToInt32(tbStartzeitHour.Text), Convert.ToInt32(tbStartzeitMin.Text)),
+                                                         new Time(Convert.ToInt32(tbEndzeitHour.Text), Convert.ToInt32(tbEndzeitMin.Text)),
+                                                         tbVorname.Text + " " + tbNachname.Text);
+                if (bc.checkBuchung())
+                {
+                    btnBuchen.Enabled = true;
+                }
+                //MessageBox mb = new MessageBox();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Formatfehler: " + ex.Message);
+            }
+
         }
 
         private void btnBuchen_Click(object sender, EventArgs e)
@@ -65,13 +72,13 @@ namespace Tennisplatzverwaltung
             }
             else
             {
-                //DateTimeBuilder Method
-                DateTime startDateTime = buildTime(dateTimePicker1.Text.ToString(),tbStartzeitHour.Text, tbStartzeitMin.Text);
-                DateTime endDateTime = buildTime(dateTimePicker1.Text.ToString(), tbEndzeitHour.Text, tbEndzeitMin.Text);
-                string platz = cBPlatz.Text;
-                string placeId = Regex.Replace(platz, "Platz ", "");
-                
-                dbBuchen.buchungAnlegen(personId, placeId, startDateTime, endDateTime);
+                    //DateTimeBuilder Method
+                    DateTime startDateTime = buildTime(dateTimePicker1.Text.ToString(), tbStartzeitHour.Text, tbStartzeitMin.Text);
+                    DateTime endDateTime = buildTime(dateTimePicker1.Text.ToString(), tbEndzeitHour.Text, tbEndzeitMin.Text);
+                    
+                    string platz = cBPlatz.Text;
+                    string placeId = Regex.Replace(platz, "Platz ", "");
+                    dbBuchen.buchungAnlegen(personId, placeId, startDateTime, endDateTime);
             }
         }
 
@@ -204,6 +211,22 @@ namespace Tennisplatzverwaltung
             if(btnBuchen.Enabled ==  true)
             {
                 btnBuchen.Enabled = false;
+            }
+        }
+
+        private void tbStartzeitHour_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            string pattern = "\\d{1,2}:\\d{2}\\s*(AM|PM)";
+
+            if (box != null)
+            {
+                if (!Regex.IsMatch(box.Text, pattern, RegexOptions.CultureInvariant))
+                {
+                    MessageBox.Show("Falsches Stundenformat.");
+                    e.Cancel = true;
+                    box.Select(0, box.Text.Length);
+                }
             }
         }
     }

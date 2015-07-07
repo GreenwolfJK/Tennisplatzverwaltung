@@ -112,6 +112,7 @@
             this.tbStartzeitHour.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbStartzeitHour.Enter += new System.EventHandler(this.tbStartzeitHour_Enter);
             this.tbStartzeitHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStartzeitHour_KeyPress);
+            this.tbStartzeitHour.Validating += new System.ComponentModel.CancelEventHandler(this.tbStartzeitHour_Validating);
             // 
             // tbEndzeitHour
             // 
