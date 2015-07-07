@@ -19,6 +19,10 @@ namespace Tennisplatzverwaltung
         {
             dbBuchen = db;
             InitializeComponent();
+
+            //aktuelles Datum initialisieren
+            dateTimePicker1.Value = DateTime.Now;
+
             //  Change  Date-Format in Constructor
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
@@ -29,16 +33,31 @@ namespace Tennisplatzverwaltung
             // ... Code einfügen ...
             // Prüfen ob Platz bereits belegt ist
             // ... Code einfügen ...
-            Buchungscheck bc = new Buchungscheck(cBPlatz.SelectedIndex + 1,
-                                                     dateTimePicker1.Value,
-                                                     new Time(Convert.ToInt32(tbStartzeitHour.Text), Convert.ToInt32(tbStartzeitMin.Text)),
-                                                     new Time(Convert.ToInt32(tbEndzeitHour.Text), Convert.ToInt32(tbEndzeitMin.Text)),
-                                                     tbVorname.Text + " " + tbNachname.Text);
-            //MessageBox mb = new MessageBox();
 
-            if (bc.checkBuchung())
+            Buchungscheck bc;
+
+            if (cBPlatz.Text != "" && tbStartzeitHour.Text != "" && tbStartzeitMin.Text != "" && tbEndzeitHour.Text != "" && tbEndzeitMin.Text != "")
             {
-                btnBuchen.Enabled = true;
+                if (tbPersonId.Text != "" || tbVorname.Text != "" && tbNachname.Text != "")
+                {
+                    bc = new Buchungscheck(cBPlatz.SelectedIndex + 1,
+                                                             dateTimePicker1.Value,
+                                                             new Time(Convert.ToInt32(tbStartzeitHour.Text), Convert.ToInt32(tbStartzeitMin.Text)),
+                                                             new Time(Convert.ToInt32(tbEndzeitHour.Text), Convert.ToInt32(tbEndzeitMin.Text)),
+                                                             tbVorname.Text + " " + tbNachname.Text);
+                    if (bc.checkBuchung())
+                    {
+                        btnBuchen.Enabled = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bitte füllen Sie alle Felder aus!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte füllen Sie alle Felder aus!");
             }
         }
 
