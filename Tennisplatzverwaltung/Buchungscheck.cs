@@ -36,7 +36,6 @@ namespace Tennisplatzverwaltung
             this.start = _start;
             this.ende = _ende;
             this.playerName = _playerName;
-            MessageBox.Show("Platznummer: " + this.platznr);
         }
 
         public bool checkBuchung()

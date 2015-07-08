@@ -67,7 +67,6 @@ namespace Tennisplatzverwaltung
             {
                 // Get PersonId, cause we book with PersonId
                 personId = dbBuchen.getPersonId(tbVorname.Text, tbNachname.Text);
-                MessageBox.Show(personId.ToString());
             }
             else
             {
@@ -97,7 +96,6 @@ namespace Tennisplatzverwaltung
             string dateTimeString = date + " " + hour + ":" + min + ":00";
 
             dateTime = new DateTime();
-            MessageBox.Show(dateTimeString);
             dateTime = DateTime.ParseExact(dateTimeString, "dd-MM-yyyy HH:mm:ss",null);
         
             return dateTime;
