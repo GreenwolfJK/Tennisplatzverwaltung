@@ -19,6 +19,10 @@ namespace Tennisplatzverwaltung
         {
             dbBuchen = db;
             InitializeComponent();
+
+            //aktuelles Datum initialisieren
+            dateTimePicker1.Value = DateTime.Now;
+
             //  Change  Date-Format in Constructor
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
@@ -26,27 +30,32 @@ namespace Tennisplatzverwaltung
 
         private void btnPrüfen_Click(object sender, EventArgs e)
         {
-            // ... Code einfügen ...
             // Prüfen ob Platz bereits belegt ist
-            // ... Code einfügen ...
-            try
-            {
-                Buchungscheck bc = new Buchungscheck(cBPlatz.SelectedIndex + 1,
-                                                         dateTimePicker1.Value,
-                                                         new Time(Convert.ToInt32(tbStartzeitHour.Text), Convert.ToInt32(tbStartzeitMin.Text)),
-                                                         new Time(Convert.ToInt32(tbEndzeitHour.Text), Convert.ToInt32(tbEndzeitMin.Text)),
-                                                         tbVorname.Text + " " + tbNachname.Text);
-                if (bc.checkBuchung())
-                {
-                    btnBuchen.Enabled = true;
-                }
-                //MessageBox mb = new MessageBox();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Formatfehler: " + ex.Message);
-            }
+            Buchungscheck bc;
 
+            if (cBPlatz.Text != "" && tbStartzeitHour.Text != "" && tbStartzeitMin.Text != "" && tbEndzeitHour.Text != "" && tbEndzeitMin.Text != "")
+            {
+                if (tbPersonId.Text != "" || tbVorname.Text != "" && tbNachname.Text != "")
+                {
+                    bc = new Buchungscheck(cBPlatz.SelectedIndex + 1,
+                                                             dateTimePicker1.Value,
+                                                             new Time(Convert.ToInt32(tbStartzeitHour.Text), Convert.ToInt32(tbStartzeitMin.Text)),
+                                                             new Time(Convert.ToInt32(tbEndzeitHour.Text), Convert.ToInt32(tbEndzeitMin.Text)),
+                                                             tbVorname.Text + " " + tbNachname.Text);
+                    if (bc.checkBuchung())
+                    {
+                        btnBuchen.Enabled = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bitte füllen Sie alle Felder aus!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte füllen Sie alle Felder aus!");
+            }
         }
 
         private void btnBuchen_Click(object sender, EventArgs e)
@@ -169,18 +178,6 @@ namespace Tennisplatzverwaltung
             bool numbercheck = allowOnlyNumbers(sender,e);
         }
 
-        private bool allowOnlyNumbers(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                return e.Handled = true;
-            }
-            else
-            {
-                return e.Handled = false;
-            }
-        }
-
         private void cBPlatz_Enter(object sender, EventArgs e)
         {
             bearbeitenModus();
@@ -216,17 +213,189 @@ namespace Tennisplatzverwaltung
 
         private void tbStartzeitHour_Validating(object sender, CancelEventArgs e)
         {
-            TextBox box = sender as TextBox;
-            string pattern = "\\d{1,2}:\\d{2}\\s*(AM|PM)";
-
-            if (box != null)
+            if (tbStartzeitHour.Text == "")
             {
-                if (!Regex.IsMatch(box.Text, pattern, RegexOptions.CultureInvariant))
+                MessageBox.Show("Bitte Startzeitminuten ausfüllen");
+            }
+            else if(tbStartzeitHour.TextLength != 2)
+            {
+                tbStartzeitHour.Text = "";
+                MessageBox.Show("Format HH muss eingehalten werden.");
+            }
+            else
+            {
+                string tbHour = tbStartzeitHour.Text;
+                int hour = Convert.ToInt32(tbHour);
+                int min;
+                if (tbStartzeitMin.Text == "MM")
                 {
-                    MessageBox.Show("Falsches Stundenformat.");
-                    e.Cancel = true;
-                    box.Select(0, box.Text.Length);
+                    min = 00;
                 }
+                else
+                {
+                    string tbMin = tbStartzeitHour.Text;
+                    min = Convert.ToInt32(tbMin);
+                }
+
+                bool isValid = checkValidHour(hour, min);
+                if (isValid == false)
+                {
+                    MessageBox.Show("Falsches Startzeitformat");
+                    tbStartzeitHour.Text = "";
+                }
+            }
+        }
+
+        private void tbStartzeitMin_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbStartzeitMin.Text == "")
+            {
+                MessageBox.Show("Bitte Startzeitminuten ausfüllen");
+            }
+            else if(tbStartzeitMin.TextLength != 2)
+            {
+                tbStartzeitMin.Text = "";
+                MessageBox.Show("Format MM muss eingehalten werden.");
+            }
+            else
+            {
+                string tbMin = tbStartzeitMin.Text;
+                int min = Convert.ToInt32(tbMin);
+                int hour;
+
+                if (tbStartzeitHour.Text == "HH")
+                {
+                    hour = 00;
+                }
+                else
+                {
+                    string tbHour = tbStartzeitMin.Text;
+                    hour = Convert.ToInt32(tbHour);
+                }
+
+                bool isValid = checkValidMin(hour, min);
+
+                if (isValid == false)
+                {
+                    MessageBox.Show("Falsches Startzeitformat");
+                    tbStartzeitMin.Text = "";
+                }
+            }
+        }
+
+        private void tbEndzeitHour_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbEndzeitHour.Text == "")
+            {
+                MessageBox.Show("Bitte Endzeitstunden ausfüllen");
+            }
+            else if(tbEndzeitHour.TextLength != 2)
+            {
+                tbEndzeitHour.Text = "";
+                MessageBox.Show("Format HH muss eingehalten werden.");
+            }
+            else
+            {
+                int hour; int min;
+                string tbHour = tbEndzeitHour.Text;
+
+                hour = Convert.ToInt32(tbHour);
+                if (tbEndzeitMin.Text == "MM")
+                {
+                    min = 00;
+                }
+                else
+                {
+                    string tbMin = tbEndzeitMin.Text;
+                    min = Convert.ToInt32(tbMin);
+                }
+
+                bool isValid = checkValidHour(hour, min);
+
+                if (isValid == false)
+                {
+                    MessageBox.Show("Falsches Endzeitformat");
+                    tbEndzeitHour.Text = "";
+                }
+            }
+        }
+
+        private void tbEndzeitMin_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbEndzeitMin.Text == "")
+            {
+                MessageBox.Show("Bitte Endzeitminuten ausfüllen");
+            }
+            else if(tbEndzeitMin.TextLength != 2)
+            {
+                tbEndzeitMin.Text = "";
+                MessageBox.Show("Format MM muss eingehalten werden.");
+            }
+
+            else
+            {
+                int hour; int min;
+                string tbMin = tbEndzeitMin.Text;
+                min = Convert.ToInt32(tbMin); 
+
+                if (tbEndzeitHour.Text == "HH")
+                {
+                    hour = 00;
+                }
+                else
+                {
+                    string tbHour = tbEndzeitMin.Text;
+                    hour = Convert.ToInt32(tbHour);
+                }
+
+                bool isValid = checkValidMin(hour, min);
+
+                if (isValid == false)
+                {
+                    MessageBox.Show("Falsches Endzeitformat");
+                    tbEndzeitMin.Text = "";
+                }
+            }
+        }
+
+        private bool checkValidHour(int hour, int min)
+        {
+            if (hour <= 23 || hour == 24 && min == 0)
+            {
+                bool isValid = true;
+                return isValid;
+            }
+            else
+            {
+                bool isValid = false;
+                return isValid;
+            }
+        }
+
+
+        private bool checkValidMin(int hour, int min)
+        {
+            if (min <= 59 || min == 60 && hour == 24)
+            {
+                bool isValid = true;
+                return isValid;
+            }
+            else
+            {
+                bool isValid = false;
+                return isValid;
+            }
+        }
+
+        private bool allowOnlyNumbers(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                return e.Handled = true;
+            }
+            else
+            {
+                return e.Handled = false;
             }
         }
     }

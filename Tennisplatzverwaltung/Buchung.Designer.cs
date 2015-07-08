@@ -127,6 +127,7 @@
             this.tbEndzeitHour.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEndzeitHour.Enter += new System.EventHandler(this.tbEndzeitHour_Enter);
             this.tbEndzeitHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEndzeitHour_KeyPress);
+            this.tbEndzeitHour.Validating += new System.ComponentModel.CancelEventHandler(this.tbEndzeitHour_Validating);
             // 
             // lblVorname
             // 
@@ -203,10 +204,11 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(33, 79);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(355, 22);
             this.dateTimePicker1.TabIndex = 1;
-            this.dateTimePicker1.Value = new System.DateTime(2015, 7, 5, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Enter += new System.EventHandler(this.dateTimePicker1_Enter);
             // 
             // lblStartPlaceholder
@@ -232,6 +234,7 @@
             this.tbStartzeitMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbStartzeitMin.Enter += new System.EventHandler(this.tbStartzeitMin_Enter);
             this.tbStartzeitMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStartzeitMin_KeyPress);
+            this.tbStartzeitMin.Validating += new System.ComponentModel.CancelEventHandler(this.tbStartzeitMin_Validating);
             // 
             // tbEndzeitMin
             // 
@@ -246,12 +249,13 @@
             this.tbEndzeitMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEndzeitMin.Enter += new System.EventHandler(this.tbEndzeitMin_Enter);
             this.tbEndzeitMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEndzeitMin_KeyPress);
+            this.tbEndzeitMin.Validating += new System.ComponentModel.CancelEventHandler(this.tbEndzeitMin_Validating);
             // 
             // lblEndPlaceholder
             // 
             this.lblEndPlaceholder.AutoSize = true;
             this.lblEndPlaceholder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.lblEndPlaceholder.Location = new System.Drawing.Point(306, 113);
+            this.lblEndPlaceholder.Location = new System.Drawing.Point(307, 113);
             this.lblEndPlaceholder.Name = "lblEndPlaceholder";
             this.lblEndPlaceholder.Size = new System.Drawing.Size(15, 24);
             this.lblEndPlaceholder.TabIndex = 17;
