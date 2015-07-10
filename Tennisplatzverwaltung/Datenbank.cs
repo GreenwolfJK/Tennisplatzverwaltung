@@ -104,6 +104,15 @@ namespace Tennisplatzverwaltung
                     tblDBData = db.fillTable("SELECT * FROM " + cbTables.SelectedItem.ToString());
                     //Befülle DGV mit DataTable Daten
                     dbData.fillDGV(tblDBData);
+
+
+                    //dbData.Datgrid.Rows[dbData.Datgrid.CurrentRow.Index].Cells[0].Value = Convert.ToInt32(dbData.Datgrid.Rows[dbData.Datgrid.CurrentRow.Index - 1].Cells[0].Value.ToString()) + 1;
+                    //Falls in Tabelle Buchungen, sperre Spalte mit IDs
+                    //if (dbData.Datgrid.Columns[0].Name == "id")
+                    //{
+                    //    dbData.Datgrid.Columns[0].ReadOnly = true;
+                    //}
+
                     //Zeige Form mit DGV an
                     dbData.Visible = true;
                     //Setze richtige Position der Form ("Andocken" an Datenbank Form)

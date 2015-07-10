@@ -48,14 +48,17 @@ namespace Tennisplatzverwaltung
 
                 while (reader.Read())
                 {
-                    Time DataStart = new Time(reader.GetDateTime(0).Hour, reader.GetDateTime(0).Minute);
-                    Time DataEnd = new Time(reader.GetDateTime(1).Hour, reader.GetDateTime(1).Minute);
-                    Zeitspanne check2 = new Zeitspanne(DataStart, DataEnd);
-
-                    if (check.checkOverlap(check2))
+                    if (this.wunschtermin.Date.Equals(reader.GetDateTime(0).Date))
                     {
-                        MessageBox.Show("Es liegt eine Überschneidung vor");
-                        return false;
+                        Time DataStart = new Time(reader.GetDateTime(0).Hour, reader.GetDateTime(0).Minute);
+                        Time DataEnd = new Time(reader.GetDateTime(1).Hour, reader.GetDateTime(1).Minute);
+                        Zeitspanne check2 = new Zeitspanne(DataStart, DataEnd);
+
+                        if (check.checkOverlap(check2))
+                        {
+                            MessageBox.Show("Es liegt eine Überschneidung vor");
+                            return false;
+                        }
                     }
                 }
             }
