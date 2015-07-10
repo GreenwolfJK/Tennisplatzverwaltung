@@ -14,9 +14,9 @@ namespace Tennisplatzverwaltung
 {
     public partial class AdressdatenMenue : Form
     {
-        ArrayList arr_adressdaten = null;
-        DBConnect db = null;
-        int selIdx = -1;
+        private ArrayList arr_adressdaten = null;
+        private DBConnect db = null;
+        private int selIdx = -1;
 
         // Konstruktor, welcher nur die DB Verbindung übergeben kriegt
         public AdressdatenMenue(DBConnect db)
@@ -95,6 +95,7 @@ namespace Tennisplatzverwaltung
                 lsb_adressdaten.Items.Add(a.lsb_String());
             }
 
+            // Sorgt dafür, das bei aktualisieren der Liste der ggf. mitgegebene Wert gesetzt bleibt
             if (selIdx != -1)
             {
                 lsb_adressdaten.SelectedIndex = selIdx;

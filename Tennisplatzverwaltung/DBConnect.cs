@@ -12,8 +12,8 @@ namespace Tennisplatzverwaltung
     public class DBConnect
     {
         //Instanzieren von MysqlConnection, MySqlCommand und des ConnectionStrings mit entsprechenden Server Informationen
-        MySqlConnection connection = null;
-        MySqlCommand statement = null;
+        private MySqlConnection connection = null;
+        private MySqlCommand statement = null;
         private String myConnectionString = "SERVER=h2440804.stratoserver.net;" +
                                             "DATABASE=Tennisplatzverwaltung;" +
                                             "UID=tennisjogis;" +

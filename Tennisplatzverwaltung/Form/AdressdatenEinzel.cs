@@ -14,9 +14,9 @@ namespace Tennisplatzverwaltung
 {
     public partial class AdressdatenEinzel : Form
     {
-        DBConnect db = null;
-        int modus = 0; // 0 = Neuanlage, 1 = anzeigen, 2 = ändern, 3 = löschen
-        int key;
+        private DBConnect db = null;
+        private int modus = 0; // 0 = Neuanlage, 1 = anzeigen, 2 = ändern, 3 = löschen
+        private int key;
 
         // Konstruktor, welcher aus dem Fenster AdressdatenNeu heraus aufgerufen wird
         public AdressdatenEinzel(DBConnect db, int key)

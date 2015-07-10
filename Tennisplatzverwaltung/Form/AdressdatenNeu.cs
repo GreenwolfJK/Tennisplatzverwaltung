@@ -14,9 +14,9 @@ namespace Tennisplatzverwaltung
 {
     public partial class AdressdatenNeu : Form
     {
-        DBConnect db = null;
-        ArrayList arr_personendaten = null;
-        KeyValuePair<int, String> kv;
+        private DBConnect db = null;
+        private ArrayList arr_personendaten = null;
+        private KeyValuePair<int, String> kv;
 
         public AdressdatenNeu(DBConnect db)
         {
